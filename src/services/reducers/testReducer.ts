@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -12,7 +14,7 @@ const testSlice = createSlice({
   initialState: testState,
   reducers: {
     userAuth(state, action: PayloadAction<boolean>) {
-      state.isAuth = true;
+      state.isAuth = action.payload;
     },
   },
 });
