@@ -14,7 +14,7 @@ const testSlice = createSlice({
   initialState: testState,
   reducers: {
     userAuth(state, action: PayloadAction<boolean>) {
-      state.isAuth = true;
+      state.isAuth = action.payload;
     },
   },
 });
