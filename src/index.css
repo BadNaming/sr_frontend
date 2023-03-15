@@ -1,0 +1,17 @@
+@import url(../src/vendor/normalize.css);
+@import url(../src/vendor/fonts/fonts.css);
+
+/* App */
+@import url(../src/components/App/App.css);
+
+/* Main */
+@import url(../src/components/Main/Main.css);
+
+/* Header */
+@import url(../src/components/Header/Header.css);
+
+/* Footer */
+@import url(../src/components/Footer/Footer.css);
+
+/* ReportSettings */
+@import url(../src/components/ReportSettings/ReportSettings.css);
