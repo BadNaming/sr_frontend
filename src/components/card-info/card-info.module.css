@@ -1,0 +1,22 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 289px;
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 21px;
+  color: #444444;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 130%;
+  color: #7A7B83;
+}
