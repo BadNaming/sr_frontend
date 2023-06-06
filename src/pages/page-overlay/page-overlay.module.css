@@ -1,0 +1,52 @@
+.overlay {
+  max-width: 1216px;
+  height: calc(100vh - 38px - 80px);
+  margin: 0 auto;
+  padding-top: 38px;
+  background: rgba(240, 241, 250, 0.9);
+  border-radius: 30px 30px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 50px;
+  max-width: 392px;
+  height: max-content;
+  margin-top: 108px;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 130%;
+  margin: 0 0 29px;
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: #7A7B83;
+}
+
+.link:hover{
+  text-decoration-line: underline;
+}

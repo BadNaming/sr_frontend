@@ -17,14 +17,15 @@ const Header = () => {
         <img src={Logo} alt={TEXT_LOGO} />
       </Link>
       <ul className={styles.links}>
-        <li className={styles.link}>
-          <NavLink to={PATH_SIGN_IN} />
+        <NavLink to={PATH_SIGN_IN} className={styles.link}>
           {TEXT_SIGN_IN}
-        </li>
-        <li className={styles.link_active}>
-          <NavLink to={PATH_SIGN_UP}/>
+        </NavLink>
+        <NavLink
+          to={PATH_SIGN_UP}
+          className={`${styles.link_active} ${styles.link}`}
+        >
           {TEXT_SIGN_UP}
-        </li>
+        </NavLink>
       </ul>
     </header>
   );

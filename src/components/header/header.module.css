@@ -20,6 +20,10 @@
   line-height: 171%;
   letter-spacing: 0.4px;
   text-transform: uppercase;
+}
+
+.link {
+  text-decoration: none;
   color: rgba(0, 0, 0, 0.87);
 }
 
