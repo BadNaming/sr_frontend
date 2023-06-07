@@ -29,6 +29,7 @@
 
 .links {
   width: 100%;
+  max-width: 292px;
   display: flex;
   justify-content: space-between;
   margin: 15px 0 0;
@@ -50,3 +51,53 @@
 .link:hover{
   text-decoration-line: underline;
 }
+
+.link_active {
+  color: #2196F3;
+}
+
+.content {
+  width: 100%;
+  max-width: 292px;
+  display: flex;
+  margin: 15px 0 0;
+}
+
+.subtitle {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
+  color: #7A7B83;
+  margin: 0;
+}
+.label {
+  width: 24px;
+  height: 24px;
+  margin: 0 14px;
+}
+
+.input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+}
+
+.visible_checkbox {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(0, 0, 0, 0.54);
+  box-sizing: border-box;
+}
+.input[type="checkbox"]:checked + .visible_checkbox {
+  background: url('../../images/icon_checkbox.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+

@@ -1,5 +1,5 @@
 import styles from './button.module.css';
-import { TEXT_BTN_TRY, TYPE_BTN_TRY, TYPE_BTN_SIGN_IN, TEXT_BTN_SIGN_IN } from "../../utils/constants";
+import { TEXT_BTN_TRY, TYPE_BTN_TRY, TYPE_BTN_SIGN_IN, TEXT_BTN_SIGN_IN, TYPE_BTN_RESTORE, TEXT_BTN_RESTORE } from "../../utils/constants";
 import { useEffect, useState } from 'react';
 
 const Button = ({type}) => {
@@ -14,6 +14,10 @@ const Button = ({type}) => {
         break;
       case TYPE_BTN_SIGN_IN:
         setTextBtn(TEXT_BTN_SIGN_IN);
+        setStyleBtn(`${styles.btn} ${styles.btn_theme_blue}`)
+        break;
+      case TYPE_BTN_RESTORE:
+        setTextBtn(TEXT_BTN_RESTORE);
         setStyleBtn(`${styles.btn} ${styles.btn_theme_blue}`)
         break;
         default: return

@@ -1,9 +1,7 @@
-import { useState} from "react";
+import { useState, useCallback } from "react";
 
-export function useForm(inputValues, inputDisabled) {
+export function useForm(inputValues) {
   const [values, setValues] = useState(inputValues);
-  const [isDisabled, setIsDisabled] = useState(inputDisabled);
-  const [isHiddenButton, setIsHiddenButton] = useState(true);
 
   /** изменения в input */
   const handleChange = (e) => {
@@ -11,23 +9,47 @@ export function useForm(inputValues, inputDisabled) {
     setValues({ ...values, [name]: value });
   };
 
-  /** клик по иконке  */
-  const handleClickIcon = (e) => {
-    e.preventDefault();
-    const name = e.currentTarget.id;
-    const key = name + "Disabled";
-    setIsDisabled({ ...isDisabled, [key]: false });
-    setIsHiddenButton(false);
-  };
-
   return {
     values,
     setValues,
     handleChange,
-    isDisabled,
-    setIsDisabled,
-    handleClickIcon,
-    isHiddenButton,
-    setIsHiddenButton,
+  };
+}
+
+//хук управления формой и валидации формы
+export function useFormWithValidation(customHandlers) {
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(false);
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    if (customHandlers[name]) {
+      event.target.setCustomValidity(customHandlers[name](value));
+    }
+
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: target.validationMessage });
+    setIsValid(target.closest("form").checkValidity());
+  };
+
+  const resetForm = useCallback(
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
+      setValues(newValues);
+      setErrors(newErrors);
+      setIsValid(newIsValid);
+    },
+    [setValues, setErrors, setIsValid]
+  );
+
+  return {
+    values,
+    handleChange,
+    errors,
+    isValid,
+    resetForm
   };
 }
