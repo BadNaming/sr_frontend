@@ -1,4 +1,5 @@
 import styles from "./page-overlay.module.css";
+import globalStyles from '../../components/global-styles.module.css';
 import {
   TEXT_PAGE_SIGN_IN,
   TEXT_PAGE_REGISTER,
@@ -42,10 +43,10 @@ const PageOverlay = ({ children }) => {
         {children}
         {location.pathname === PATH_SIGN_IN && (
           <ul className={styles.links}>
-            <NavLink to={PATH_SIGN_UP} className={styles.link}>
+            <NavLink to={PATH_SIGN_UP} className={`${globalStyles.link} ${styles.link}`}>
               {TEXT_LINK_REGISTER}
             </NavLink>
-            <NavLink to={PATH_RESTORE} className={styles.link}>
+            <NavLink to={PATH_RESTORE} className={`${globalStyles.link} ${styles.link}`}>
               {TEXT_LINK_RESTORE}
             </NavLink>
           </ul>
@@ -58,7 +59,7 @@ const PageOverlay = ({ children }) => {
             </label>
             <p className={styles.subtitle}>
               {TEXT_DATA_PROCESSING}
-              <Link to={"/"} className={styles.link_active}>
+              <Link to={"/"} className={`${globalStyles.link} ${styles.link_active}`}>
                 {TEXT_DATA_PROCESSING_LINK}
               </Link>
             </p>

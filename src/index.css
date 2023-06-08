@@ -1,20 +1,14 @@
-@font-face {
-  font-family: 'Roboto Condensed';
-  font-style:  normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(./vendor/fonts/RobotoCondensed-Regular.ttf) format("truetype");
-}
-
 body {
-  margin: 0 auto;
   max-width: 1920px;
-  font-family: 'Roboto Condensed', sans-serif, -apple-system, BlinkMacSystemFont;
-  font-style:  normal;
-  font-weight: 400;
-  color: #444444;;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
 }
 
+#root {
+  height: 100vh;
+  max-width: 1216px;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 23px;
+  margin: 0 auto;
+}

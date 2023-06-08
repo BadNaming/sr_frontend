@@ -1,8 +1,4 @@
 .overlay {
-  max-width: 1216px;
-  height: calc(100vh - 38px - 80px);
-  margin: 0 auto;
-  padding-top: 38px;
   background: rgba(240, 241, 250, 0.9);
   border-radius: 30px 30px 0px 0px;
   display: flex;
@@ -18,13 +14,13 @@
   padding: 60px 50px;
   max-width: 392px;
   height: max-content;
-  margin-top: 108px;
+  margin-top: 146px;
 }
 
 .title {
   font-size: 20px;
   line-height: 130%;
-  margin: 0 0 29px;
+  margin-bottom: 29px;
 }
 
 .links {
@@ -32,19 +28,13 @@
   max-width: 292px;
   display: flex;
   justify-content: space-between;
-  margin: 15px 0 0;
-  padding: 0;
-  list-style: none;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  margin-top: 15px;
+  font-size: 12px;
   line-height: 14px;
   cursor: pointer;
 }
 
 .link {
-  text-decoration: none;
   color: #7A7B83;
 }
 
@@ -60,18 +50,15 @@
   width: 100%;
   max-width: 292px;
   display: flex;
-  margin: 15px 0 0;
+  margin-top: 10px;
 }
 
 .subtitle {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
   font-size: 13px;
   line-height: 14px;
   color: #7A7B83;
-  margin: 0;
 }
+
 .label {
   width: 24px;
   height: 24px;
@@ -91,8 +78,9 @@
   width: 18px;
   height: 18px;
   border: 3px solid rgba(0, 0, 0, 0.54);
-  box-sizing: border-box;
+  cursor: var(--cursor);
 }
+
 .input[type="checkbox"]:checked + .visible_checkbox {
   background: url('../../images/icon_checkbox.svg');
   background-position: center;

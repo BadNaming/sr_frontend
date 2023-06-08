@@ -1,5 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import styles from "./header.module.css";
+import globalStyles from '../global-styles.module.css'
 import Logo from "../../images/logo.svg";
 import {
   TEXT_LOGO,
@@ -13,16 +14,16 @@ import {
 const Header = () => {
   return (
     <header className={styles.header}>
-      <Link to={PATH_HOME}>
+      <Link to={PATH_HOME} className={globalStyles.link}>
         <img src={Logo} alt={TEXT_LOGO} />
       </Link>
       <ul className={styles.links}>
-        <NavLink to={PATH_SIGN_IN} className={styles.link}>
+        <NavLink to={PATH_SIGN_IN} className={`${styles.link_header} ${globalStyles.link}`}>
           {TEXT_SIGN_IN}
         </NavLink>
         <NavLink
           to={PATH_SIGN_UP}
-          className={`${styles.link_active} ${styles.link}`}
+          className={`${globalStyles.link} ${styles.link_selected}`}
         >
           {TEXT_SIGN_UP}
         </NavLink>

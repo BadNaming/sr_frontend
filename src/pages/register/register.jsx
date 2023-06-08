@@ -1,8 +1,8 @@
-import styles from "./register.module.css";
+import globalStyles from '../../components/global-styles.module.css'
 import InputElement from "../../components/input-element/input-element";
 import Button from "../../components/button/button";
 import {
-  TYPE_BTN_SIGN_IN,
+  TYPE_BTN_REGISTER,
   TYPE_INPUT_PASSWORD,
   TYPE_INPUT_EMAIL,
   TYPE_INPUT_NAME,
@@ -13,23 +13,23 @@ import {
 const Register = () => {
   return (
     <>
-      <form className={styles.form}>
-        <fieldset className={styles.field_group}>
+      <form className={globalStyles.form}>
+        <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_NAME} />
         </fieldset>
-        <fieldset className={styles.field_group}>
+        <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_PHONE} />
         </fieldset>
-        <fieldset className={styles.field_group}>
+        <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_EMAIL} />
         </fieldset>
-        <fieldset className={styles.field_group}>
+        <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_PASSWORD} />
         </fieldset>
-        <fieldset className={styles.field_group}>
+        <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_PASSWORD_SECOND} />
         </fieldset>
-        <Button type={TYPE_BTN_SIGN_IN} />
+        <Button type={TYPE_BTN_REGISTER} />
       </form>
     </>
   );

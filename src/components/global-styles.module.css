@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../vendor/fonts/RobotoCondensed-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../vendor/fonts/RobotoCondensed-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../vendor/fonts/Roboto-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../vendor/fonts/Roboto-Medium.ttf) format("truetype");
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  --font-Roboto: 'Roboto', sans-serif, -apple-system, BlinkMacSystemFont;
+  --font-Roboto-Condensed: 'Roboto Condensed', sans-serif, -apple-system, BlinkMacSystemFont;
+  font-style:  normal;
+  font-weight: 400;
+  --cursor: pointer;
+}
+
+button {
+  border: none;
+  font-family: var(--font-Roboto);
+  font-weight: 500;
+  cursor: var(--cursor);
+}
+
+input {
+  font-family: var(--font-Roboto);
+  outline: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+  font-family: var(--font-Roboto-Condensed);
+}
+
+p {
+  color: #7A7B83;
+  font-family: var(--font-Roboto-Condensed);
+}
+
+ul {
+  list-style: none;
+}
+
+label {
+  font-family: var(--font-Roboto);
+}
+
+span {
+  font-family: var(--font-Roboto);
+}
+
+.link {
+  text-decoration: none;
+  font-family: var(--font-Roboto);
+  cursor: var(--cursor);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.fieldset {
+  border: none;
+  margin-bottom: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
