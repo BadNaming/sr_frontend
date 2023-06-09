@@ -6,17 +6,24 @@ import {
   TYPE_INPUT_EMAIL,
   TYPE_INPUT_PASSWORD
 } from "../../utils/constants";
+import { useState } from 'react';
 
 const Login = () => {
+  const [disabledBtn, setDisabledBtn] = useState(true);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className={globalStyles.form}>
+    <form className={globalStyles.form} onClick={handleLogin}>
       <fieldset className={globalStyles.fieldset}>
         <InputElement type={TYPE_INPUT_EMAIL} />
       </fieldset>
       <fieldset className={globalStyles.fieldset}>
         <InputElement type={TYPE_INPUT_PASSWORD} />
       </fieldset>
-      <Button type={TYPE_BTN_SIGN_IN} />
+      <Button type={TYPE_BTN_SIGN_IN} disabled={disabledBtn}/>
     </form>
   );
 };

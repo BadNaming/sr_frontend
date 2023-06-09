@@ -10,10 +10,18 @@ import {
   PATH_SIGN_IN,
   PATH_SIGN_UP,
 } from "../../utils/constants";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [classHeader, setClassHeader] = useState(`${styles.header}`)
+
+  useEffect(()=>{
+    setClassHeader(`${styles.header} ${styles.header_show}`)
+  }, [])
+
+
   return (
-    <header className={styles.header}>
+    <header className={classHeader}>
       <Link to={PATH_HOME} className={globalStyles.link}>
         <img src={Logo} alt={TEXT_LOGO} />
       </Link>

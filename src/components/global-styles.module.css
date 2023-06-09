@@ -34,33 +34,37 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  --font-Roboto: 'Roboto', sans-serif, -apple-system, BlinkMacSystemFont;
-  --font-Roboto-Condensed: 'Roboto Condensed', sans-serif, -apple-system, BlinkMacSystemFont;
   font-style:  normal;
   font-weight: 400;
+  --font-Main: 'Roboto', sans-serif, -apple-system, BlinkMacSystemFont;
+  --font-Additional: 'Roboto Condensed', sans-serif, -apple-system, BlinkMacSystemFont;
   --cursor: pointer;
+  --color-overlay: rgba(240, 241, 250, 0.9);
+  --color-special: #9c27b0;
+  --color-links: #2196F3;
+  --color-errors: #D32F2F;
 }
 
 button {
   border: none;
-  font-family: var(--font-Roboto);
+  font-family: var(--font-Main);
   font-weight: 500;
   cursor: var(--cursor);
 }
 
 input {
-  font-family: var(--font-Roboto);
+  font-family: var(--font-Main);
   outline: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
-  font-family: var(--font-Roboto-Condensed);
+  font-family: var(--font-Additional);
 }
 
 p {
   color: #7A7B83;
-  font-family: var(--font-Roboto-Condensed);
+  font-family: var(--font-Additional);
 }
 
 ul {
@@ -68,16 +72,16 @@ ul {
 }
 
 label {
-  font-family: var(--font-Roboto);
+  font-family: var(--font-Main);
 }
 
 span {
-  font-family: var(--font-Roboto);
+  font-family: var(--font-Main);
 }
 
 .link {
   text-decoration: none;
-  font-family: var(--font-Roboto);
+  font-family: var(--font-Main);
   cursor: var(--cursor);
 }
 

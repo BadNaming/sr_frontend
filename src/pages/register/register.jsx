@@ -1,4 +1,4 @@
-import globalStyles from '../../components/global-styles.module.css'
+import globalStyles from "../../components/global-styles.module.css";
 import InputElement from "../../components/input-element/input-element";
 import Button from "../../components/button/button";
 import {
@@ -9,11 +9,18 @@ import {
   TYPE_INPUT_PHONE,
   TYPE_INPUT_PASSWORD_SECOND,
 } from "../../utils/constants";
+import { useState } from "react";
 
 const Register = () => {
+  const [disabledBtn, setDisabledBtn] = useState(true);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
-      <form className={globalStyles.form}>
+      <form className={globalStyles.form} onClick={handleRegister}>
         <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_NAME} />
         </fieldset>
@@ -29,7 +36,7 @@ const Register = () => {
         <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_PASSWORD_SECOND} />
         </fieldset>
-        <Button type={TYPE_BTN_REGISTER} />
+        <Button type={TYPE_BTN_REGISTER} disabled={disabledBtn} />
       </form>
     </>
   );

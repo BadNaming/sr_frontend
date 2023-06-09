@@ -31,8 +31,20 @@
   visibility: visible;
 }
 
+.label_error{
+  color: var(--color-errors);
+}
+
 .input:focus {
-  border: 2px solid #2196F3;
+  border: 2px solid var(--color-links);
+}
+
+.input_error {
+  border: 2px solid var(--color-errors);
+}
+
+.input_error:focus {
+  border: 2px solid var(--color-errors);
 }
 
 .input:focus::placeholder {
@@ -40,7 +52,12 @@
 }
 
 .input:focus ~ .label{
-  color: #2196F3;
+  color: var(--color-links);
+  visibility: visible;
+}
+
+.input:focus ~ .label_error{
+  color: var(--color-errors);
   visibility: visible;
 }
 
@@ -57,4 +74,8 @@
   letter-spacing: 0.8px;
   color: rgba(0, 0, 0, 0.6);
   margin-top: 2px;
+}
+
+.span_error {
+  color: var(--color-errors);
 }

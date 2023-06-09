@@ -3,6 +3,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transform: translateY(-60px);
+}
+
+.header_show {
+  transform: translateY(0);
+  transition: 1s linear;
 }
 
 .links {
@@ -23,7 +29,7 @@
 }
 
 .link_selected {
-  color: #9C27B0;
+  color: var(--color-special);
   border-radius: 4px;
   border: 1px solid rgba(156, 39, 176, 0.5);
   padding: 6px 15px;

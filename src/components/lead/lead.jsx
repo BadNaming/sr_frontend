@@ -9,16 +9,29 @@ import {
 import ImgLead from "../../images/lead_page.svg";
 import CardInfo from "../card-info/card-info";
 import Button from "../button/button";
+import { useEffect, useState } from "react";
 
 const Lead = () => {
+  const [classTitle, setClassTitle] = useState(`${styles.title}`);
+  const [classSubtitle, setClassSubtitle] = useState(`${styles.subtitle}`);
+  const [classImg, setClassImg] = useState(`${styles.img}`);
+  const [classCards, setClassCards] = useState(`${styles.cards}`)
+
+  useEffect(()=>{
+    setClassTitle(`${styles.title} ${styles.title_show}`);
+    setClassSubtitle(`${styles.subtitle} ${styles.subtitle_show}`);
+    setClassImg(`${styles.img} ${styles.img_show}`);
+    setClassCards(`${styles.cards} ${styles.cards_show}`)
+  }, [])
+
   return (
     <section className={styles.lead}>
-      <h1 className={styles.title}>{TEXT_LEAD_PAGE}</h1>
-      <p className={styles.subtitle}>{TEXT_LEAD_ABOUT}</p>
+      <h1 className={classTitle}>{TEXT_LEAD_PAGE}</h1>
+      <p className={classSubtitle}>{TEXT_LEAD_ABOUT}</p>
       <section className={styles.container}>
-        <img src={ImgLead} alt={TEXT_IMG_LEAD} />
+        <img src={ImgLead} alt={TEXT_IMG_LEAD} className={classImg}/>
         <div className={styles.content}>
-          <div className={styles.cards}>
+          <div className={classCards}>
             {CARD_INFO_LEAD.map((card) => (
               <CardInfo key={card._id} card={card} />
             ))}

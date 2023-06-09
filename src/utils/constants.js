@@ -25,10 +25,9 @@ export const TEXT_PLACEHOLDER_PASSWORD = 'Пароль';
 export const TEXT_PLACEHOLDER_PASSWORD_SECOND = 'Подтвердите пароль';
 export const TEXT_PLACEHOLDER_NAME = 'ФИО';
 export const TEXT_PLACEHOLDER_PHONE = 'Номер телефона';
+export const TEXT_PLACEHOLDER_ERROR = 'Ошибка';
 export const TEXT_SPAN_PHONE = 'Например : +7 (999) 000-00-00';
-
 export const TEXT_ICON_PASSWORD = 'show password';
-
 
 export const TYPE_BTN_TRY = 'try';
 export const TYPE_BTN_SIGN_IN = 'sign-in';

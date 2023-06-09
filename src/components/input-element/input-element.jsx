@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import styles from "./input-element.module.css";
 import {
@@ -13,23 +12,37 @@ import {
   TEXT_PLACEHOLDER_PASSWORD_SECOND,
   TEXT_PLACEHOLDER_NAME,
   TEXT_PLACEHOLDER_PHONE,
+  TEXT_PLACEHOLDER_ERROR,
   TEXT_SPAN_PHONE,
   TEXT_ICON_PASSWORD,
-  PATH_SIGN_IN
 } from "../../utils/constants";
 import imgShowPassword from "../../images/icon_show_password.svg";
 import imgHisePassword from "../../images/icon_hide_password.svg";
 
-const InputElement = ({ type }) => {
-  const location = useLocation();
+const InputElement = ({ type}) => {
+  const { values, handleChange, errors } = useForm("");
   const [placeholder, setPlaceholder] = useState(`${type}`);
-  const { values, handleChange } = useForm("");
-  const [isShow, setIsSgow] = useState(true);
+  const [isShowTextPassword, setIsShowTextPassword] = useState(true);
   const [iconPassword, setIconPassword] = useState(imgShowPassword);
   const [classInput, setClassInput] = useState(`${styles.input}`);
   const [classLabel, setClassLabel] = useState(`${styles.label}`);
+  const [classError, setClassError] = useState(`${styles.span}`);
+  const [error, setError] = useState('');
 
   useEffect(() => {
+    handlePlaceholderInput();
+  }, []);
+
+  useEffect(() => {
+    showLabel();
+  }, [values]);
+
+  useEffect(() => {
+    showError();
+  }, [errors]);
+
+  /** установка текста, стиля в зависимости от типа поля input */
+  const handlePlaceholderInput = () => {
     switch (type) {
       case TYPE_INPUT_PASSWORD:
         setPlaceholder(TEXT_PLACEHOLDER_PASSWORD);
@@ -40,6 +53,7 @@ const InputElement = ({ type }) => {
         break;
       case TYPE_INPUT_PHONE:
         setPlaceholder(TEXT_PLACEHOLDER_PHONE);
+        setError(TEXT_SPAN_PHONE)
         break;
       case TYPE_INPUT_EMAIL:
         setPlaceholder(TEXT_PLACEHOLDER_EMAIL);
@@ -51,27 +65,46 @@ const InputElement = ({ type }) => {
       default:
         return;
     }
-  }, []);
+  };
 
   /** показывать или скрывать иконку и текст пароля */
   const toggleShowPassword = () => {
-    if (isShow) {
+    if (isShowTextPassword) {
       setIconPassword(imgHisePassword);
-      setIsSgow(false);
+      setIsShowTextPassword(false);
       setClassInput(`${styles.input}`);
     } else {
       setIconPassword(imgShowPassword);
-      setIsSgow(true);
+      setIsShowTextPassword(true);
       setClassInput(`${styles.input} ${styles.input_hide}`);
     }
   };
 
   /** показывать label если поле input заполненно */
-  useEffect(() => {
-    values
+  const showLabel = () => {
+    values[type]
       ? setClassLabel(`${styles.label} ${styles.label_visible}`)
       : setClassLabel(`${styles.label}`);
-  }, [values]);
+  };
+
+  /** показать ошибку если поле input не валидно */
+  const showError = () => {
+    if (errors[type]) {
+      setPlaceholder(TEXT_PLACEHOLDER_ERROR);
+      setClassLabel(
+        `${styles.label} ${styles.label_visible} ${styles.label_error}`
+      );
+      setClassInput(`${styles.input} ${styles.input_error}`);
+      setError(errors[type]);
+      setClassError(`${styles.span} ${styles.span_error}`)
+    } else {
+      handlePlaceholderInput();
+      showLabel();
+      setClassInput(`${styles.input}`);
+      type === TYPE_INPUT_PHONE ? setError(TEXT_SPAN_PHONE): setError('');
+      setClassError(`${styles.span}`)
+    }
+  };
 
   return (
     <>
@@ -83,14 +116,14 @@ const InputElement = ({ type }) => {
         className={classInput}
         value={values.type}
         onChange={handleChange}
+        minLength={3}
       />
       <label htmlFor={type} className={classLabel}>
         {placeholder}
       </label>
-      {(type === TYPE_INPUT_PHONE) && (
-        <span className={styles.span}>{TEXT_SPAN_PHONE}</span>
-      )}
-      {(type === TYPE_INPUT_PASSWORD || type === TYPE_INPUT_PASSWORD_SECOND) && (
+      <span className={classError}>{error}</span>
+      {(type === TYPE_INPUT_PASSWORD ||
+        type === TYPE_INPUT_PASSWORD_SECOND) && (
         <img
           src={iconPassword}
           alt={TEXT_ICON_PASSWORD}

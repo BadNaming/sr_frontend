@@ -19,7 +19,7 @@ const Button = ({ type }) => {
     switch (type) {
       case TYPE_BTN_TRY:
         setTextBtn(TEXT_BTN_TRY);
-        setStyleBtn(`${styles.btn} ${styles.btn_try}`);
+        setStyleBtn(`${styles.btn} ${styles.btn_try} ${styles.btn_try_show}`);
         break;
       case TYPE_BTN_SIGN_IN:
         setTextBtn(TEXT_BTN_SIGN_IN);
