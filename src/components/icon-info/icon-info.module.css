@@ -1,0 +1,39 @@
+.icon {
+  position: relative;
+}
+
+.icon:hover .icon_filled{
+  cursor: var(--cursor-custom);
+  background-image: url(../../images/icon_filled_blue.svg);
+}
+
+.icon:hover .span {
+  visibility: visible;
+}
+
+.icon_img {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 17px;
+  height: 17px;
+}
+
+.icon_filled {
+  background-image: url(../../images/icon_filled.svg);
+}
+
+.span {
+  visibility: hidden;
+  position: absolute;
+  width: 390px;
+  background: rgba(97, 97, 97, 0.9);
+  border-radius: 4px;
+  color: #FFFFFF;
+  padding: 4px 8px;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.15px;
+  margin-top: 10px;
+  z-index: 10;
+}

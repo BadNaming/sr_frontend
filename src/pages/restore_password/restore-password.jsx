@@ -5,7 +5,6 @@ import { TYPE_INPUT_EMAIL, TYPE_BTN_RESTORE } from '../../utils/constants';
 import { useState } from 'react';
 
 const RestorePassword = () => {
-  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const handleRestorePassword = (e) => {
     e.preventDefault();
@@ -17,7 +16,7 @@ const RestorePassword = () => {
         <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_EMAIL} />
         </fieldset>
-        <Button type={TYPE_BTN_RESTORE} disabled={disabledBtn}/>
+        <Button type={TYPE_BTN_RESTORE}/>
       </form>
     </>
   )

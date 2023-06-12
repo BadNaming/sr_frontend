@@ -1,9 +1,11 @@
 .header {
-  margin-top: 9px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transform: translateY(-60px);
+  max-width: 1216px;
+  margin: 9px auto 0;
+  width: 100%;
 }
 
 .header_show {

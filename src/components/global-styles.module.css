@@ -39,10 +39,12 @@
   --font-Main: 'Roboto', sans-serif, -apple-system, BlinkMacSystemFont;
   --font-Additional: 'Roboto Condensed', sans-serif, -apple-system, BlinkMacSystemFont;
   --cursor: pointer;
+  --cursor-custom: url(./../images/cursor.svg) 4 1, url(./../images/cursor.png) 4 1, pointer;
   --color-overlay: rgba(240, 241, 250, 0.9);
   --color-special: #9c27b0;
   --color-links: #2196F3;
   --color-errors: #D32F2F;
+  --color-main: #444444;;
 }
 
 button {

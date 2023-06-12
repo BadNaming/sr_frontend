@@ -1,0 +1,61 @@
+.card {
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 289px;
+  height: 120px;
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+
+.wrapper_theme_blue {
+  background: #B3E5FC;
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 10px;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--color-links);
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 130%;
+  color: var(--color-links);
+}
+
+.btn_connect {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  align-self: flex-end;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.btn_add {
+  background-image: url(../../images/icon_plus.svg);
+}
+
+.btn_pencil {
+  background-image: url(../../images/icon_pencil.svg);
+}
+
+.btn_connect:hover ~ .wrapper{
+  border: 1px solid var(--color-links);
+}

@@ -1,0 +1,46 @@
+.overlay {
+  background: var(--color-overlay);
+  border-radius: 30px 30px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 100vw;
+}
+
+.container {
+  max-width: 1216px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 130%;
+  color: var(--color-main);
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-items: center;
+  gap: 10px;
+}
+
+.year {
+  font-size: 16px;
+  line-height: 130%;
+  color: var(--color-main);
+}
+
+.trade_name {
+  font-size: 16px;
+  line-height: 130%;
+  color: var(--color-special)
+}
+
+
+

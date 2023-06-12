@@ -4,12 +4,12 @@ import InputElement from "../../components/input-element/input-element";
 import {
   TYPE_BTN_SIGN_IN,
   TYPE_INPUT_EMAIL,
-  TYPE_INPUT_PASSWORD
+  TYPE_INPUT_PASSWORD,
+  PATH_REPORT_SHAPER
 } from "../../utils/constants";
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,7 +23,8 @@ const Login = () => {
       <fieldset className={globalStyles.fieldset}>
         <InputElement type={TYPE_INPUT_PASSWORD} />
       </fieldset>
-      <Button type={TYPE_BTN_SIGN_IN} disabled={disabledBtn}/>
+      <Button type={TYPE_BTN_SIGN_IN}/>
+      <Link to={PATH_REPORT_SHAPER} style={{color: "red", padding: 10, border: '2 solid red'}}>СФОРМИРОВАТЬ ОТЧЕТ</Link>
     </form>
   );
 };

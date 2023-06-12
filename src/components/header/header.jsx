@@ -19,7 +19,6 @@ const Header = () => {
     setClassHeader(`${styles.header} ${styles.header_show}`)
   }, [])
 
-
   return (
     <header className={classHeader}>
       <Link to={PATH_HOME} className={globalStyles.link}>

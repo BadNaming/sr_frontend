@@ -12,7 +12,6 @@ import {
 import { useState } from "react";
 
 const Register = () => {
-  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -36,7 +35,7 @@ const Register = () => {
         <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_PASSWORD_SECOND} />
         </fieldset>
-        <Button type={TYPE_BTN_REGISTER} disabled={disabledBtn} />
+        <Button type={TYPE_BTN_REGISTER}/>
       </form>
     </>
   );
