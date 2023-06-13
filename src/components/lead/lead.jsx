@@ -8,7 +8,7 @@ import {
 } from "../../utils/constants";
 import ImgLead from "../../images/lead_page.svg";
 import CardInfo from "../card-info/card-info";
-import Button from "../button/button";
+import ButtonElement from '../button-element/button-element'
 import { useEffect, useState } from "react";
 
 const Lead = () => {
@@ -36,7 +36,7 @@ const Lead = () => {
               <CardInfo key={card._id} card={card} />
             ))}
           </div>
-          <Button type={TYPE_BTN_TRY} />
+          <ButtonElement type={TYPE_BTN_TRY} />
         </div>
       </section>
     </section>

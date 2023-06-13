@@ -1,6 +1,6 @@
 import globalStyles from "../../components/global-styles.module.css";
 import InputElement from "../../components/input-element/input-element";
-import Button from "../../components/button/button";
+import ButtonElement from "../../components/button-element/button-element";
 import {
   TYPE_BTN_REGISTER,
   TYPE_INPUT_PASSWORD,
@@ -35,7 +35,7 @@ const Register = () => {
         <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_PASSWORD_SECOND} />
         </fieldset>
-        <Button type={TYPE_BTN_REGISTER}/>
+        <ButtonElement type={TYPE_BTN_REGISTER}/>
       </form>
     </>
   );

@@ -1,6 +1,6 @@
 import globalStyles from '../../components/global-styles.module.css';
 import InputElement from '../../components/input-element/input-element';
-import Button from '../../components/button/button';
+import ButtonElement from '../../components/button-element/button-element';
 import { TYPE_INPUT_EMAIL, TYPE_BTN_RESTORE } from '../../utils/constants';
 import { useState } from 'react';
 
@@ -16,7 +16,7 @@ const RestorePassword = () => {
         <fieldset className={globalStyles.fieldset}>
           <InputElement type={TYPE_INPUT_EMAIL} />
         </fieldset>
-        <Button type={TYPE_BTN_RESTORE}/>
+        <ButtonElement type={TYPE_BTN_RESTORE}/>
       </form>
     </>
   )

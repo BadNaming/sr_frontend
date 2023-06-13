@@ -7,6 +7,8 @@ import ReportCustom from "../../pages/report-shaper/report-shaper";
 import PageWithForm from "../../pages/page-with-form/page-with-form";
 import PageWithReport from "../../pages/page-with-report/page-with-report";
 import { Routes, Route } from "react-router-dom";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import {
   PATH_HOME,
   PATH_SIGN_IN,
@@ -18,14 +20,16 @@ import {
 const App = () => {
   return (
     <>
-      <Header/>
-      <Routes>
-        <Route path={PATH_HOME} element={<Lead />} />
-        <Route path={PATH_SIGN_IN} element={<PageWithForm><Login/></PageWithForm>} />
-        <Route path={PATH_SIGN_UP} element={<PageWithForm><Register/></PageWithForm>} />
-        <Route path={PATH_RESTORE} element={<PageWithForm><RestorePassword/></PageWithForm>} />
-        <Route path={PATH_REPORT_SHAPER} element={<PageWithReport><ReportCustom/></PageWithReport>} />
-      </Routes>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Header/>
+          <Routes>
+            <Route path={PATH_HOME} element={<Lead />} />
+            <Route path={PATH_SIGN_IN} element={<PageWithForm><Login/></PageWithForm>} />
+            <Route path={PATH_SIGN_UP} element={<PageWithForm><Register/></PageWithForm>} />
+            <Route path={PATH_RESTORE} element={<PageWithForm><RestorePassword/></PageWithForm>} />
+            <Route path={PATH_REPORT_SHAPER} element={<PageWithReport><ReportCustom/></PageWithReport>} />
+          </Routes>
+      </LocalizationProvider>
     </>
   );
 }

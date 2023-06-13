@@ -1,5 +1,5 @@
 import globalStyles from '../../components/global-styles.module.css';
-import Button from "../../components/button/button";
+import ButtonElement from '../../components/button-element/button-element';
 import InputElement from "../../components/input-element/input-element";
 import {
   TYPE_BTN_SIGN_IN,
@@ -23,7 +23,7 @@ const Login = () => {
       <fieldset className={globalStyles.fieldset}>
         <InputElement type={TYPE_INPUT_PASSWORD} />
       </fieldset>
-      <Button type={TYPE_BTN_SIGN_IN}/>
+      <ButtonElement type={TYPE_BTN_SIGN_IN}/>
       <Link to={PATH_REPORT_SHAPER} style={{color: "red", padding: 10, border: '2 solid red'}}>СФОРМИРОВАТЬ ОТЧЕТ</Link>
     </form>
   );

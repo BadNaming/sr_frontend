@@ -10,6 +10,8 @@ export const TEXT_BTN_TRY = 'Попробуйте сейчас';
 export const TEXT_BTN_SIGN_IN = 'Войти';
 export const TEXT_BTN_REGISTER = 'Зарегистрироваться';
 export const TEXT_BTN_RESTORE = 'Восстановить';
+export const TEXT_BTN_REPORT_GO = 'Перейти к отчёту';
+export const TEXT_BTN_REPORT_MAKE = 'Сформировать отчёт';
 
 export const TEXT_PAGE_SIGN_IN = 'Вход в Simple Reports';
 export const TEXT_PAGE_REGISTER = 'Регистрация в Simple Reports';
@@ -38,6 +40,10 @@ export const TYPE_BTN_TRY = 'try';
 export const TYPE_BTN_SIGN_IN = 'sign-in';
 export const TYPE_BTN_REGISTER = 'sign-up';
 export const TYPE_BTN_RESTORE = 'restore';
+export const TYPE_BTN_ADD = 'add';
+export const TYPE_BTN_EDIT = 'edit';
+export const TYPE_BTN_REPORT_GO = 'go-report';
+export const TYPE_BTN_REPORT_MAKE = 'make-report';
 export const TYPE_INPUT_EMAIL = 'email';
 export const TYPE_INPUT_PASSWORD = 'password';
 export const TYPE_INPUT_PASSWORD_SECOND = 'password_second';
@@ -77,3 +83,31 @@ export const CARD_ADVERTISING = [
     company_id: 25603
   }
 ]
+
+export const TYPE_FILTER_OFFICES = 'Кабинеты';
+export const TEXT_FILTER_OFFICES = 'Выберите кабинеты';
+export const OFFICES = [
+  'Парадигма',
+  'Импульс медиа'
+];
+
+export const TYPE_FILTER_CAMPAIGN = 'Кампании';
+export const TEXT_FILTER_CAMPAIGN = 'Выберите кампании';
+export const CAMPAIGN = [
+  'Вебинар',
+  'Промоакция',
+  'Наружная реклама',
+  'E-mail рассылки',
+];
+
+export const TYPE_FILTER_GROUPING = 'За всё время';
+export const TEXT_FILTER_GROUPING = 'Тип группировки';
+export const GROUPING = [
+  'За всё время',
+  'Выбор 2'
+];
+
+export const TYPE_FILTER_DATA_REPORT = 'data_report';
+export const TEXT_FILTER_DATA_REPORT = 'Задайте период формирования отчёта';
+export const TEXT_FILTER_DATA_START = 'Начало периода';
+export const TEXT_FILTER_DATA_FINISH = 'Конец периода';
