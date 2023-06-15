@@ -7,6 +7,11 @@
   background-image: url(../../images/icon_filled_blue.svg);
 }
 
+.icon:hover .icon_filled_help{
+  cursor: var(--cursor-custom);
+  background-image: url(../../images/icon_filled_help_blue.svg);
+}
+
 .icon:hover .span {
   visibility: visible;
 }
@@ -23,6 +28,10 @@
   background-image: url(../../images/icon_filled.svg);
 }
 
+.icon_filled_help {
+  background-image: url(../../images/icon_filled_help.svg);
+}
+
 .span {
   visibility: hidden;
   position: absolute;
@@ -36,4 +45,11 @@
   letter-spacing: 0.15px;
   margin-top: 10px;
   z-index: 10;
+}
+
+.span_help {
+  width: max-content;
+  max-width: 185px;
+  left: -50px;
+  top: 25px;
 }

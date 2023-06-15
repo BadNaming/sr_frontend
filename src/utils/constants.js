@@ -35,6 +35,8 @@ export const TEXT_SPAN_PHONE = 'Например : +7 (999) 000-00-00';
 export const TEXT_ICON_PASSWORD = 'show password';
 export const TEXT_ICON_INFO = 'Сервису «Simple Reports» будет предоставлен доступ к общей информации, к рекламным кабинетам и сообществам в любое время.';
 export const TEXT_ICON_INFO_ALT = 'Reference information';
+export const TEXT_SELECT_METRICS = 'Выберите метрики в том порядке, в каком они должны отобразиться в отчёте';
+export const TEXT_ADD_BREAKDOWN = 'Добавить разбивку по объявлениям';
 
 export const TYPE_BTN_TRY = 'try';
 export const TYPE_BTN_SIGN_IN = 'sign-in';
@@ -111,3 +113,67 @@ export const TYPE_FILTER_DATA_REPORT = 'data_report';
 export const TEXT_FILTER_DATA_REPORT = 'Задайте период формирования отчёта';
 export const TEXT_FILTER_DATA_START = 'Начало периода';
 export const TEXT_FILTER_DATA_FINISH = 'Конец периода';
+
+export const TYPE_FILTER_METRICS = 'Настройки таблицы';
+export const METRICS  = [
+  {
+    show_start: true,
+    name: 'Кампания',
+    text_info: ''
+  },
+  {
+    show_start: true,
+    name: 'Показы',
+    text_info: ''
+  },
+  {
+    show_start: true,
+    name: 'CPM',
+    text_info: 'цена 1000 показов'
+  },
+  {
+    show_start: true,
+    name: 'Клики',
+    text_info: ''
+  },
+  {
+    show_start: true,
+    name: 'CTR',
+    text_info: 'отношение переходов к показам'
+  },
+  {
+    show_start: true,
+    name: 'CPC',
+    text_info: 'цена клика'
+  },
+  {
+    show_start: false,
+    name: 'CR% Подписчики',
+    text_info: 'конверсия клика в подписку'
+  },
+  {
+    show_start: false,
+    name: 'CPF',
+    text_info: 'цена подписчика'
+  },
+  {
+    show_start: false,
+    name: 'Лиды',
+    text_info: ''
+  },
+  {
+    show_start: false,
+    name: 'CR% Лиды',
+    text_info: 'конверсия клика в подписку'
+  },
+  {
+    show_start: false,
+    name: 'CPL',
+    text_info: 'цена лида'
+  },
+  {
+    show_start: true,
+    name: 'Потрачено',
+    text_info: ''
+  }
+]
