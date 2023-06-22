@@ -1,0 +1,20 @@
+.input {
+  padding: 0 10px;
+  width: 163px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.input:focus {
+  border: 2px solid var(--color-links);
+}
+
+.input:focus::placeholder {
+  color: transparent;
+}

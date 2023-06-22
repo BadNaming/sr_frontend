@@ -5,9 +5,7 @@ import {
   TYPE_BTN_SIGN_IN,
   TYPE_INPUT_EMAIL,
   TYPE_INPUT_PASSWORD,
-  PATH_REPORT_SHAPER
 } from "../../utils/constants";
-import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -24,7 +22,6 @@ const Login = () => {
         <InputElement type={TYPE_INPUT_PASSWORD} />
       </fieldset>
       <ButtonElement type={TYPE_BTN_SIGN_IN}/>
-      <Link to={PATH_REPORT_SHAPER} style={{color: "red", padding: 10, border: '2 solid red'}}>СФОРМИРОВАТЬ ОТЧЕТ</Link>
     </form>
   );
 };

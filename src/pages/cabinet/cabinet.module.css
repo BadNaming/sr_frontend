@@ -1,0 +1,251 @@
+.background {
+  background: var(--color-overlay);
+  border-radius: 30px 30px 0px 0px;
+}
+
+.container {
+  width: 1216px;
+  margin: auto;
+  position: relative;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 130%;
+  padding-top: 40px;
+}
+
+.user_info {
+  margin-top: 30px;
+}
+
+.user_info_first_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.name {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  font-style: normal;
+}
+
+.phone {
+  margin-left: 20px;
+}
+
+.user_info_second_row {
+  margin-top: 10px;
+}
+
+.client_credentials {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 352px;
+}
+
+.report_history {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 130%;
+  margin-top: 20px;
+}
+
+.report_history_date {
+  display: flex;
+  align-items: center;
+  width: 352px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 8px 0px;
+}
+
+.calendar {
+  background-color: transparent;
+  border: none !important;
+  z-index: 2;
+}
+
+.date_pickers {
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+}
+
+.space {
+  margin: 0px 11px;
+}
+
+.table_container {
+  margin-top: 20px;
+  width: 1216px;
+  height: 352px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px 10px 0px 0px;
+  overflow: scroll;
+}
+
+.table {
+  padding-top: 26px;
+  text-align: start;
+  border-spacing: 0;
+}
+
+.table_head {
+  color: var(--color-main);
+  text-align: left;
+  padding-left: 16px;
+  height: 36px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.table_head tr th,
+.table_body tr td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.table_head tr:hover th {
+  border-right: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.table_head tr:hover th:last-child {
+  border-right: none;
+}
+
+.table_first_column,
+.table_second_column,
+.table_third_column,
+.table_fourth_column {
+  padding-left: 16px;
+}
+
+.table_first_column {
+  width: 392px;
+}
+
+.table_second_column {
+  width: 309px;
+}
+
+.table_third_column {
+  width: 309px;
+}
+
+.table_fourth_column {
+  width: 206px;
+}
+
+.table_body {
+  color: var(--color-main);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.row_with_icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon_container,
+.icon_container_download {
+  width: 34px;
+  height: 36px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.update_icon {
+  background-image: url(../../images/icon_update.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.checked_icon {
+  background-image: url(../../images/icon_checked.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 17.5px;
+  height: 13.4px;
+}
+
+.info_icon {
+  background-image: url(../../images/icon_info.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+}
+
+.download_icon {
+  background-image: url(../../images/icon_download.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 16px;
+  height: 18px;
+  fill: rgba(0, 0, 0, 0.54);
+  transition: all 0.3s ease;
+}
+
+.icon_container_download:hover .download_icon {
+  fill: #2196f3;
+}
+
+.icon_container_download:hover {
+  cursor: pointer;
+}
+
+.report_name_modal {
+  width: 391px;
+  background-color: white;
+  position: absolute;
+  top: 418px;
+  z-index: 2;
+  box-shadow: 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.report_status_modal {
+  width: 308px;
+  background-color: white;
+  position: absolute;
+  top: 418px;
+  left: 392px;
+  z-index: 2;
+  box-shadow: 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.report_date_modal {
+  width: 308px;
+  background-color: white;
+  position: absolute;
+  top: 418px;
+  left: calc(392px + 309px);
+  z-index: 2;
+  box-shadow: 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}

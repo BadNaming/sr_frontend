@@ -5,11 +5,14 @@ import {
   TEXT_IMG_LEAD,
   TYPE_BTN_TRY,
   CARD_INFO_LEAD,
+  PATH_REPORT_SHAPER,
+  PATH_CABINET
 } from "../../utils/constants";
 import ImgLead from "../../images/lead_page.svg";
 import CardInfo from "../card-info/card-info";
 import ButtonElement from '../button-element/button-element'
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Lead = () => {
   const [classTitle, setClassTitle] = useState(`${styles.title}`);
@@ -39,6 +42,8 @@ const Lead = () => {
           <ButtonElement type={TYPE_BTN_TRY} />
         </div>
       </section>
+      <Link to={PATH_REPORT_SHAPER} style={{color: "red", padding: 10, border: '2 solid red'}}>СФОРМИРОВАТЬ ОТЧЕТ</Link>
+      <Link to={PATH_CABINET} style={{color: "red", padding: 10, border: '2 solid red'}}>ЛИЧНЫЙ КАБИНЕТ</Link>
     </section>
   );
 };
