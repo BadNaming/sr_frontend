@@ -1,39 +1,43 @@
 import React, { useState } from 'react'
 import styles from './select.module.css'
 
-const SelectInput = ({ visible, onChange }) => {
+const SelectInput = ({ onChange }) => {
   const [chosen, setChosen] = useState(null)
-  if (visible) {
-    return (
-      <div className={styles.sorting_container}>
-        <div
-          onClick={() => {
-            setChosen('DESC')
-            onChange(chosen)
-          }}
-        >
-          По убыванию
-        </div>
-        <div
-          onClick={() => {
-            setChosen('ASC')
-            onChange(chosen)
-          }}
-        >
-          По возрастанию
-        </div>
-        <div
-          onClick={() => {
-            setChosen(null)
-            onChange(chosen)
-          }}
-        >
-          Без сортировки
-        </div>
-      </div>
-    )
+
+  const handleSelectionChange = (value) => {
+    setChosen(value)
+    onChange(value)
   }
-  return null
+
+  return (
+    <div className={styles.sorting_container}>
+      <div
+        className={styles.sorting_item}
+        onClick={() => handleSelectionChange('DESC')}
+      >
+        <div className={styles.icon_container}>
+          <div className={styles.north}></div>
+        </div>
+        <div>По убыванию</div>
+      </div>
+      <div
+        className={styles.sorting_item}
+        onClick={() => handleSelectionChange('ASC')}
+      >
+        <div className={styles.icon_container}>
+          <div className={styles.south}></div>
+        </div>
+        <div>По возрастанию</div>
+      </div>
+      <div
+        className={styles.sorting_item}
+        onClick={() => handleSelectionChange(null)}
+      >
+        <div className={styles.icon_container}></div>
+        <div>Без сортировки</div>
+      </div>
+    </div>
+  )
 }
 
 export default SelectInput

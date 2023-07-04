@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './icon-info.module.css';
-import { TYPE_ICON_FILLED, TEXT_ICON_INFO, TYPE_ICON_FILLED_HELP } from '../../utils/constants';
+import { TYPE_ICON_FILLED, TEXT_ICON_INFO, TYPE_ICON_FILLED_HELP, TYPE_ICON_ADD } from '../../utils/constants';
 
 const IconInfo = ({type, text}) => {
   const [classIcon, setClassIcon] = useState(`${styles.icon_img}`);
@@ -17,6 +17,11 @@ useEffect(()=>{
         setClassIcon(`${styles.icon_img} ${styles.icon_filled_help}`);
         setTextIcon(text);
         setClassSpan(`${styles.span} ${styles.span_help}`)
+        break;
+      case TYPE_ICON_ADD:
+        setClassIcon(`${styles.icon_img} ${styles.icon_add}`);
+        setTextIcon('');
+        setClassSpan(`${styles.span} ${styles.span_add}`)
         break;
       default:
         return;

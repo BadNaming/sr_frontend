@@ -6,26 +6,32 @@ import {
   TYPE_BTN_TRY,
   CARD_INFO_LEAD,
   PATH_REPORT_SHAPER,
-  PATH_CABINET
+  PATH_CABINET,
+  PATH_SIGN_IN
 } from "../../utils/constants";
 import ImgLead from "../../images/lead_page.svg";
 import CardInfo from "../card-info/card-info";
 import ButtonElement from '../button-element/button-element'
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Lead = () => {
   const [classTitle, setClassTitle] = useState(`${styles.title}`);
   const [classSubtitle, setClassSubtitle] = useState(`${styles.subtitle}`);
   const [classImg, setClassImg] = useState(`${styles.img}`);
-  const [classCards, setClassCards] = useState(`${styles.cards}`)
+  const [classCards, setClassCards] = useState(`${styles.cards}`);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     setClassTitle(`${styles.title} ${styles.title_show}`);
     setClassSubtitle(`${styles.subtitle} ${styles.subtitle_show}`);
     setClassImg(`${styles.img} ${styles.img_show}`);
     setClassCards(`${styles.cards} ${styles.cards_show}`)
-  }, [])
+  }, []);
+
+  const handleRedirectSignIn = () => {
+    navigate(PATH_SIGN_IN)
+  }
 
   return (
     <section className={styles.lead}>
@@ -39,7 +45,7 @@ const Lead = () => {
               <CardInfo key={card._id} card={card} />
             ))}
           </div>
-          <ButtonElement type={TYPE_BTN_TRY} />
+          <ButtonElement type={TYPE_BTN_TRY} onClick={handleRedirectSignIn} />
         </div>
       </section>
       <Link to={PATH_REPORT_SHAPER} style={{color: "red", padding: 10, border: '2 solid red'}}>СФОРМИРОВАТЬ ОТЧЕТ</Link>

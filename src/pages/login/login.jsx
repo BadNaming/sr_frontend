@@ -6,20 +6,31 @@ import {
   TYPE_INPUT_EMAIL,
   TYPE_INPUT_PASSWORD,
 } from "../../utils/constants";
+import { useForm } from '../../hooks/useForm';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../../store/auth';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const { values, handleChange, isValid } = useForm(
+    { email: "", password: "" }
+  );
 
-  const handleLogin = (e) => {
+  const handleSubmint = (e) => {
     e.preventDefault();
+
+    console.log('yes')
+    // если форма валидна - добавить пользователя
+    isValid && dispatch(addUser())
   };
 
   return (
-    <form className={globalStyles.form} onClick={handleLogin}>
+    <form className={globalStyles.form} onSubmit={handleSubmint}>
       <fieldset className={globalStyles.fieldset}>
-        <InputElement type={TYPE_INPUT_EMAIL} />
+        <InputElement type={TYPE_INPUT_EMAIL} value={values.email} onChange={handleChange}/>
       </fieldset>
       <fieldset className={globalStyles.fieldset}>
-        <InputElement type={TYPE_INPUT_PASSWORD} />
+        <InputElement type={TYPE_INPUT_PASSWORD} value={values.password} onChange={handleChange}/>
       </fieldset>
       <ButtonElement type={TYPE_BTN_SIGN_IN}/>
     </form>

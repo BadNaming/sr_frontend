@@ -12,6 +12,8 @@ export const TEXT_BTN_REGISTER = 'Зарегистрироваться';
 export const TEXT_BTN_RESTORE = 'Восстановить';
 export const TEXT_BTN_REPORT_GO = 'Перейти к отчёту';
 export const TEXT_BTN_REPORT_MAKE = 'Сформировать отчёт';
+export const TEXT_BTN_SAVE = 'Сохранить';
+export const TEXT_BTN_EDIT = 'Изменить';
 
 export const TEXT_PAGE_SIGN_IN = 'Вход в Simple Reports';
 export const TEXT_PAGE_REGISTER = 'Регистрация в Simple Reports';
@@ -19,12 +21,17 @@ export const TEXT_PAGE_RESTORE = 'Восстановление пароля';
 export const TEXT_PAGE_REPORT_SHAPER = 'Формирование отчета';
 export const TEXT_PAGE_REPORT_SHAPER_SUBTITLE = 'Подключите и выберите рекламную платформу';
 export const TEXT_PAGE_RESTORE_SUBTITLE = 'На вашу почту будет отправлено письмо с ссылкой для смены пароля';
+export const TEXT_PAGE_CABINET = 'Личный кабинет';
 
 export const TEXT_DATA_PROCESSING = 'Даю согласие на обработку персональных данных согласно ';
 export const TEXT_DATA_PROCESSING_LINK = 'политике конфиденциальности';
 
 export const TEXT_LINK_REGISTER = 'Зарегистрироваться';
 export const TEXT_LINK_RESTORE = 'Восстановить пароль';
+export const TEXT_LINK_WATCH_REPORT = 'Посмотреть отчёт';
+export const TEXT_LINK_PROFILE = 'Профиль';
+export const TEXT_LINK_REPORTS = 'Мои отчёты';
+export const TEXT_LINK_LOGOUT = 'Выйти';
 
 export const TEXT_PLACEHOLDER_EMAIL = 'E-mail';
 export const TEXT_PLACEHOLDER_PASSWORD = 'Пароль';
@@ -34,8 +41,25 @@ export const TEXT_PLACEHOLDER_PHONE = 'Номер телефона';
 export const TEXT_PLACEHOLDER_ERROR = 'Ошибка';
 export const TEXT_SPAN_PHONE = 'Например : +7 (999) 000-00-00';
 export const TEXT_ICON_PASSWORD = 'show password';
-export const TEXT_ICON_INFO = 'Сервису «Simple Reports» будет предоставлен доступ к общей информации, к рекламным кабинетам и сообществам в любое время.';
+export const TEXT_ICON_INFO = 'Для подключения рекламного кабинета VK ADS заполните “client_id” и “client_secret” в личном кабинете'
 export const TEXT_ICON_INFO_ALT = 'Reference information';
+export const TEXT_ICON_CLIENT_ID = [
+  '1. Откройте личный кабинет “VK ADS”',
+  '2. Перейдите в “Настройки”',
+  '3. “client_id” указан в верхнем евом углу'
+]
+
+export const TEXT_ICON_CLIENT_SECRET= [
+  '1. Проверьте, что вы заполнили реквизиты в ваше кабинете VK ADS:',
+  '   - Для агентств и рекламодателей юрлиц — в разделе «Бюджет».',
+  '   - Реквизиты должны быть проверены модерацией. Для рекламодателей физлиц — в разделе «Настройки».',
+  '2. Перейдите в раздел «Настройки» → «Доступ к API» и нажмите «Запросить доступ к API».',
+  '3. Заполните ФИО и контакты сотрудника, который отвечает за использование API.',
+  '4. Нажмите «Запросить доступ».',
+  '5. В разделе «Настройки» вы увидите ваш client_id и кнопку для получения client_secret — эти данные нужны, чтобы получить токен доступа. Скопируйте и сохраните client_secret. Получить его можно только в течение 10 минут.',
+
+]
+
 export const TEXT_PLACEHOLDER_CLIENT_ID = 'ID клиента';
 export const TEXT_PLACEHOLDER_CLIENT_SECRET = 'Секретный ключ';
 export const TEXT_SELECT_METRICS = 'Выберите метрики в том порядке, в каком они должны отобразиться в отчёте';
@@ -49,6 +73,8 @@ export const TYPE_BTN_ADD = 'add';
 export const TYPE_BTN_EDIT = 'edit';
 export const TYPE_BTN_REPORT_GO = 'go-report';
 export const TYPE_BTN_REPORT_MAKE = 'make-report';
+export const TYPE_BTN_SAVE = 'save';
+
 export const TYPE_INPUT_EMAIL = 'email';
 export const TYPE_INPUT_PASSWORD = 'password';
 export const TYPE_INPUT_PASSWORD_SECOND = 'password_second';
@@ -56,6 +82,7 @@ export const TYPE_INPUT_NAME = 'name';
 export const TYPE_INPUT_PHONE = 'phone';
 export const TYPE_ICON_FILLED = 'filled';
 export const TYPE_ICON_FILLED_HELP = 'filled_help';
+export const TYPE_ICON_ADD = 'add'
 export const TYPE_INPUT_CLIENT_ID = 'client_id';
 export const TYPE_INPUT_CLIENT_SECRET = 'client_secret';
 
@@ -65,6 +92,7 @@ export const PATH_SIGN_UP = "/register";
 export const PATH_RESTORE = "/restore";
 export const PATH_REPORT_SHAPER = "/report/shaper";
 export const PATH_CABINET = "/cabinet";
+export const PATH_MAIN_REPORT = "/main";
 
 export const REPORT_IN_PROGRESS = 'В процессе формирования';
 export const REPORT_READY = 'Сформирован';

@@ -1,22 +1,30 @@
-import styles from './page-with-report.module.css';
-import { TEXT_PAGE_REPORT_SHAPER, PATH_REPORT_SHAPER } from '../../utils/constants';
-import Footer from '../../components/footer/footer';
-import { useLocation } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import styles from './page-with-report.module.css'
+import {
+  TEXT_PAGE_REPORT_SHAPER,
+  TEXT_PAGE_CABINET,
+  PATH_REPORT_SHAPER,
+  PATH_CABINET
+} from '../../utils/constants'
+import Footer from '../../components/footer/footer'
+import { useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
-const PageWithReport = ({children}) => {
-  const location = useLocation();
-  const [textTitle, setTextTitle] = useState("");
+const PageWithReport = ({ children }) => {
+  const location = useLocation()
+  const [textTitle, setTextTitle] = useState('')
 
   useEffect(() => {
     switch (location.pathname) {
       case PATH_REPORT_SHAPER:
-        setTextTitle(TEXT_PAGE_REPORT_SHAPER);
-        break;
+        setTextTitle(TEXT_PAGE_REPORT_SHAPER)
+        break
+      case PATH_CABINET:
+        setTextTitle(TEXT_PAGE_CABINET)
+        break
       default:
-        return;
+        return
     }
-  }, [location.pathname]);
+  }, [location.pathname])
 
   return (
     <>
@@ -25,10 +33,10 @@ const PageWithReport = ({children}) => {
           <h2 className={styles.title}>{textTitle}</h2>
           {children}
         </div>
-        <Footer/>
+        <Footer />
       </section>
     </>
   )
-};
+}
 
-export default PageWithReport;
+export default PageWithReport

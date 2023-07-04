@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useForm } from "../../hooks/useForm";
 import styles from "./input-element.module.css";
 import {
@@ -19,7 +19,7 @@ import {
 import imgShowPassword from "../../images/icon_show_password.svg";
 import imgHisePassword from "../../images/icon_hide_password.svg";
 
-const InputElement = ({ type}) => {
+const InputElement = ({ type, value, onChange}) => {
   const { values, handleChange, errors } = useForm("");
   const [placeholder, setPlaceholder] = useState(`${type}`);
   const [isShowTextPassword, setIsShowTextPassword] = useState(true);
@@ -114,9 +114,11 @@ const InputElement = ({ type}) => {
         type="text"
         placeholder={placeholder}
         className={classInput}
-        value={values.type}
-        onChange={handleChange}
+        // value={values.type}
+        // onChange={handleChange}
         minLength={3}
+        value={value}
+        onChange={onChange}
       />
       <label htmlFor={type} className={classLabel}>
         {placeholder}

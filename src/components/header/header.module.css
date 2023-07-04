@@ -17,18 +17,22 @@
 .links {
   margin-top: 6px;
   display: grid;
-  grid-template-columns: min-content min-content;
+  grid-template-columns: max-content max-content;
   gap: 28px;
   align-items: center;
   font-size: 14px;
   line-height: 171%;
   letter-spacing: 0.4px;
-  text-transform: uppercase;
+}
+
+.links_user {
+  gap: 10px;
 }
 
 .link_header {
   color: rgba(0, 0, 0, 0.87);
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 .link_selected {
@@ -37,4 +41,39 @@
   border: 1px solid rgba(156, 39, 176, 0.5);
   padding: 6px 15px;
   font-weight: 500;
+  text-transform: uppercase;
 }
+
+.subtitle {
+  font-family: var(--font-Additional);
+  font-size: 18px;
+  line-height: 21px;
+  color: var( --color-main);
+}
+
+.disabled {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.container_avatar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.img_avatar {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-special);
+  color: #ffffff;
+  font-family: var(--font-Additional);
+  font-size: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  padding: 5px 10px;
+  max-width: 32px;
+  max-height: 32px;
+}
+
+

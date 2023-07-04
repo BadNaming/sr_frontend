@@ -16,21 +16,34 @@ import {
   PATH_SIGN_IN,
   PATH_SIGN_UP,
   PATH_RESTORE,
-  PATH_REPORT_SHAPER
+  PATH_REPORT_SHAPER,
+  PATH_MAIN_REPORT
 } from "../../utils/constants";
+import MainReport from "../../pages/main_report/main_report";
+import ProtectedRoute from "../../pages/protected-route/protected-route";
+import { useLocation } from "react-router-dom";
 
 const App = () => {
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Header/>
-        <Routes>
+        <Routes location={background || location}>
+        {/* страницы для всех */}
           <Route path={PATH_HOME} element={<Lead />} />
-          <Route path={PATH_SIGN_IN} element={<PageWithForm><Login/></PageWithForm>} />
-          <Route path={PATH_SIGN_UP} element={<PageWithForm><Register/></PageWithForm>} />
-          <Route path={PATH_RESTORE} element={<PageWithForm><RestorePassword/></PageWithForm>} />
-          <Route path={PATH_REPORT_SHAPER} element={<PageWithReport><ReportCustom/></PageWithReport>} />
-          <Route path={PATH_CABINET} element={<Cabinet/>} />
+
+        {/* страницы для неавторизованных пользователей   */}
+          <Route path={PATH_SIGN_IN} element={<ProtectedRoute onUnlyAuth={true} element={<PageWithForm><Login/></PageWithForm>}/>} />
+          <Route path={PATH_SIGN_UP} element={<ProtectedRoute onUnlyAuth={true} element={<PageWithForm><Register/></PageWithForm>}/>} />
+          <Route path={PATH_RESTORE} element={<ProtectedRoute onUnlyAuth={true} element={<PageWithForm><RestorePassword/></PageWithForm>}/>} />
+
+        {/* страницы для авторизованных пользователей */}
+          <Route path={PATH_REPORT_SHAPER} element={<ProtectedRoute element={<PageWithReport><ReportCustom/> </PageWithReport>} />}/>
+          <Route path={PATH_CABINET} element={<ProtectedRoute element={<Cabinet/>} />}/>
+          <Route path={PATH_MAIN_REPORT} element={<ProtectedRoute element={<MainReport/>} />}/>
         </Routes>
       </LocalizationProvider>
     </>

@@ -7,17 +7,25 @@ import {
   TYPE_BTN_ADD,
   TYPE_BTN_EDIT,
   TYPE_BTN_REPORT_GO, TYPE_BTN_REPORT_MAKE,
+  TYPE_BTN_SAVE,
   TEXT_BTN_TRY,
   TEXT_BTN_SIGN_IN,
   TEXT_BTN_RESTORE,
   TEXT_BTN_REGISTER,
-  TEXT_BTN_REPORT_GO, TEXT_BTN_REPORT_MAKE
+  TEXT_BTN_REPORT_GO,
+  TEXT_BTN_REPORT_MAKE,
+  TEXT_BTN_SAVE,
+  TEXT_BTN_EDIT
 } from "../../utils/constants";
 import { useEffect, useState } from "react";
 
 const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave }) => {
   const [textBtn, setTextBtn] = useState("");
   const [styleBtn, setStyleBtn] = useState(`${styles.btn}`);
+
+  useEffect(() => {
+    handleStyleBtn()
+  }, [type]);
 
   const handleStyleBtn = () => {
     switch (type) {
@@ -41,10 +49,6 @@ const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave }) => {
         setTextBtn("");
         setStyleBtn(`${styles.btn_connect} ${styles.btn_add}`);
         break;
-      case TYPE_BTN_EDIT:
-        setTextBtn("");
-        setStyleBtn(`${styles.btn_connect} ${styles.btn_edit}`);
-        break;
       case TYPE_BTN_REPORT_GO:
         setTextBtn(TEXT_BTN_REPORT_GO);
         setStyleBtn(`${styles.btn} ${styles.btn_theme_grey}`);
@@ -53,14 +57,18 @@ const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave }) => {
         setTextBtn(TEXT_BTN_REPORT_MAKE);
         setStyleBtn(`${styles.btn} ${styles.btn_theme_blue}`);
         break;
+      case TYPE_BTN_SAVE:
+        setTextBtn(TEXT_BTN_SAVE);
+        setStyleBtn(`${styles.btn} ${styles.btn_theme_blue}`);
+        break;
+      case TYPE_BTN_EDIT:
+        setTextBtn(TEXT_BTN_EDIT);
+        setStyleBtn(`${styles.btn} ${styles.btn_theme_blue}`);
+        break;
       default:
         return;
     }
   }
-  
-  useEffect(() => {
-    handleStyleBtn()
-  }, [type]);
 
   return (
     <>

@@ -32,6 +32,12 @@
   background-image: url(../../images/icon_filled_help.svg);
 }
 
+.icon_add {
+  width: 33px;
+  height: 33px;
+  background-image: url(../../images/icon_plus.svg);
+}
+
 .span {
   visibility: hidden;
   position: absolute;
@@ -52,4 +58,8 @@
   max-width: 185px;
   left: -50px;
   top: 25px;
+}
+
+.span_add {
+  display: none;
 }
