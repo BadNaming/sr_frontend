@@ -24,10 +24,12 @@
 .client_credentials {
   margin-top: 10px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 26px;
   width: max-content;
+  margin-bottom: 45px;
 }
 
 .report_history {
