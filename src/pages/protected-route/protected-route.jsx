@@ -1,12 +1,12 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { isAuthentication } from "../../store/auth/selectors";
-import { PATH_SIGN_IN, PATH_HOME } from "../../utils/constants";
+import { PATH_SIGN_IN, PATH_REPORT_SETTINGS } from "../../utils/constants";
 
 const ProtectedRoute = ({ element, onUnlyAuth = false, ...rest }) => {
   const isAuthenticated = useSelector(isAuthentication);
   const location = useLocation();
-  const from = location.state?.from || PATH_HOME;
+  const from = location.state?.from || PATH_REPORT_SETTINGS;
 
   /** Если разрешен неавторизованный доступ, а пользователь авторизован...*/
   if (onUnlyAuth && isAuthenticated) {

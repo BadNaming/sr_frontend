@@ -9,7 +9,6 @@
   color: #ffffff;
   padding: 6px 15px;
   max-height: 36px;
-  visibility: hidden;
 }
 
 .btn_try {
@@ -18,14 +17,7 @@
   align-self: flex-end;
 }
 
-.btn_try_show {
-  transition: visibility .1s linear 4s;
-  visibility: visible;
-  animation: jump .8s ease 4s forwards;
-}
-
 .btn_theme_grey {
-  visibility: visible;
   background: transparent;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -35,36 +27,15 @@
 }
 
 .btn_theme_blue {
-  visibility: visible;
   background: var(--color-links);
   width: 100%;
 }
 
-@keyframes jump {
-  0% {
-    transform: translateY(180px);
-  }
-  30% {
-    transform: translateY(-40px);
-  }
-  50% {
-    transform: translateY(80px);
-  }
-  70% {
-    transform: translateY(-20px);
-  }
-  80% {
-    transform: translateY(40px);
-  }
-  90% {
-    transform: translateY(-10px);
-  }
-  95% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.btn_theme_transparent {
+  background-color: transparent;
+  color: var(--color-links);
+  box-shadow: none;
+  border: 1px solid var(--color-links);
 }
 
 .btn_connect {

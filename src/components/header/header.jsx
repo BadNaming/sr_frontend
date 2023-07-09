@@ -1,6 +1,5 @@
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import styles from './header.module.css';
-import globalStyles from '../global-styles.module.css';
 import Logo from '../../images/logo.svg';
 import {
   TEXT_LOGO,
@@ -18,11 +17,11 @@ import IconChart from '../../images/icon_chart.svg';
 import HeaderMenu from '../header-menu/header-menu';
 
 const Header = () => {
-  const [classHeader, setClassHeader] = useState(`${styles.header}`);
   const [classListLink, setListLink] = useState(`${styles.links}`);
   const [isShowMenu, setIsShowMenu] = useState(false);
   const user = useSelector(getUser);
   const location = useLocation();
+
 
   useEffect(() => {
     user
@@ -30,26 +29,26 @@ const Header = () => {
       : setListLink(`${styles.links}`)
   }, [user])
 
-  useEffect(() => {
-    setClassHeader(`${styles.header} ${styles.header_show}`)
-  }, []);
-
   useEffect(()=>{
     setIsShowMenu(false)
   }, [location.pathname])
 
   const heandleUserName = () => {
-    const arr = user.split(' ')
+    const arr = user.name.split(' ')
     return arr[1]
   }
 
   const handleShowMenu = () => {
-    setIsShowMenu(!isShowMenu)
+    setIsShowMenu(true)
+  }
+
+  const handleHiddenMenu = () => {
+    setIsShowMenu(false)
   }
 
   return (
-    <header className={classHeader}>
-      <Link to={PATH_HOME} className={globalStyles.link}>
+    <header className={styles.header}>
+      <Link to={PATH_HOME} className={styles.link}>
         <img src={Logo} alt={TEXT_LOGO} />
       </Link>
       <ul className={classListLink}>
@@ -57,7 +56,7 @@ const Header = () => {
           <>
             <NavLink
               to={PATH_HOME}
-              className={`${globalStyles.link} ${styles.container_avatar}`}
+              className={`${styles.link} ${styles.container_avatar}`}
 
             >
               <p className={`${styles.subtitle} ${styles.disabled}`}>
@@ -68,7 +67,7 @@ const Header = () => {
             <div
               className={styles.container_avatar}
               onMouseEnter={handleShowMenu}
-              onMouseLeave={handleShowMenu}
+              onMouseLeave={handleHiddenMenu}
             >
               <p className={styles.subtitle}>{heandleUserName()}</p>
               <span className={styles.img_avatar}>
@@ -81,13 +80,13 @@ const Header = () => {
           <>
             <NavLink
               to={PATH_SIGN_IN}
-              className={`${globalStyles.link} ${styles.link_header}`}
+              className={`${styles.link} ${styles.link_header}`}
             >
               {TEXT_SIGN_IN}
             </NavLink>
             <NavLink
               to={PATH_SIGN_UP}
-              className={`${globalStyles.link} ${styles.link_selected}`}
+              className={`${styles.link} ${styles.link_selected}`}
             >
               {TEXT_SIGN_UP}
             </NavLink>

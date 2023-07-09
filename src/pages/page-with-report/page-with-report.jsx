@@ -1,8 +1,10 @@
 import styles from './page-with-report.module.css'
 import {
-  TEXT_PAGE_REPORT_SHAPER,
+  TEXT_PAGE_REPORT_SETTINGS,
+  TEXT_PAGE_REPORT_MAIN,
   TEXT_PAGE_CABINET,
-  PATH_REPORT_SHAPER,
+  PATH_REPORT_SETTINGS,
+  PATH_REPORT_MAIN,
   PATH_CABINET
 } from '../../utils/constants'
 import Footer from '../../components/footer/footer'
@@ -15,8 +17,11 @@ const PageWithReport = ({ children }) => {
 
   useEffect(() => {
     switch (location.pathname) {
-      case PATH_REPORT_SHAPER:
-        setTextTitle(TEXT_PAGE_REPORT_SHAPER)
+      case PATH_REPORT_SETTINGS:
+        setTextTitle(TEXT_PAGE_REPORT_SETTINGS)
+        break
+      case PATH_REPORT_MAIN:
+        setTextTitle(TEXT_PAGE_REPORT_MAIN)
         break
       case PATH_CABINET:
         setTextTitle(TEXT_PAGE_CABINET)

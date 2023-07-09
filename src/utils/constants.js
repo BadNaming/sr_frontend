@@ -1,3 +1,12 @@
+export const PATH_HOME = '/';
+export const PATH_SIGN_IN = "/login";
+export const PATH_SIGN_UP = "/register";
+export const PATH_RESTORE = "/restore";
+export const PATH_REPORT_SETTINGS = "/report/settings";
+export const PATH_REPORT_MAIN = "/report/main";
+export const PATH_CABINET = "/cabinet";
+export const PATH_MAIN_REPORT = "/main";
+
 export const TEXT_LOGO = 'Logotip Simple Reports';
 export const TEXT_FOOTER = 'Simple Reports';
 export const TEXT_SIGN_IN = 'ВХОД';
@@ -5,6 +14,7 @@ export const TEXT_SIGN_UP = 'РЕГИСТРАЦИЯ';
 export const TEXT_LEAD_PAGE = 'Маркетинговая аналитика';
 export const TEXT_LEAD_ABOUT = 'Сервис сбора данных по рекламе, заказам, звонкам и клиентам из рекламных кабинетов в единой связанной системе';
 export const TEXT_IMG_LEAD = 'Diagram image';
+export const TEXT_REPORT_HISTORY = 'История сформированных отчётов';
 
 export const TEXT_BTN_TRY = 'Попробуйте сейчас';
 export const TEXT_BTN_SIGN_IN = 'Войти';
@@ -12,14 +22,29 @@ export const TEXT_BTN_REGISTER = 'Зарегистрироваться';
 export const TEXT_BTN_RESTORE = 'Восстановить';
 export const TEXT_BTN_REPORT_GO = 'Перейти к отчёту';
 export const TEXT_BTN_REPORT_MAKE = 'Сформировать отчёт';
+export const TEXT_BTN_REPORT_SETTINGS = 'Настроить отчёт';
+export const TEXT_BTN_REPORT_DOWNLOAD = 'Скачать отчёт XLS';
 export const TEXT_BTN_SAVE = 'Сохранить';
 export const TEXT_BTN_EDIT = 'Изменить';
+
+export const TYPE_BTN_TRY = 'try';
+export const TYPE_BTN_SIGN_IN = 'sign-in';
+export const TYPE_BTN_REGISTER = 'sign-up';
+export const TYPE_BTN_RESTORE = 'restore';
+export const TYPE_BTN_ADD = 'add';
+export const TYPE_BTN_EDIT = 'edit';
+export const TYPE_BTN_REPORT_GO = 'go-report';
+export const TYPE_BTN_REPORT_MAKE = 'make-report';
+export const TYPE_BTN_REPORT_SETTINGS = 'settings-report';
+export const TYPE_BTN_REPORT_DOWNLOAD = 'download-report';
+export const TYPE_BTN_SAVE = 'save';
 
 export const TEXT_PAGE_SIGN_IN = 'Вход в Simple Reports';
 export const TEXT_PAGE_REGISTER = 'Регистрация в Simple Reports';
 export const TEXT_PAGE_RESTORE = 'Восстановление пароля';
-export const TEXT_PAGE_REPORT_SHAPER = 'Формирование отчета';
-export const TEXT_PAGE_REPORT_SHAPER_SUBTITLE = 'Подключите и выберите рекламную платформу';
+export const TEXT_PAGE_REPORT_SETTINGS = 'Формирование отчета';
+export const TEXT_PAGE_REPORT_SETTINGS_SUBTITLE = 'Подключите и выберите рекламную платформу';
+export const TEXT_PAGE_REPORT_MAIN = 'Основной отчёт';
 export const TEXT_PAGE_RESTORE_SUBTITLE = 'На вашу почту будет отправлено письмо с ссылкой для смены пароля';
 export const TEXT_PAGE_CABINET = 'Личный кабинет';
 
@@ -65,16 +90,6 @@ export const TEXT_PLACEHOLDER_CLIENT_SECRET = 'Секретный ключ';
 export const TEXT_SELECT_METRICS = 'Выберите метрики в том порядке, в каком они должны отобразиться в отчёте';
 export const TEXT_ADD_BREAKDOWN = 'Добавить разбивку по объявлениям';
 
-export const TYPE_BTN_TRY = 'try';
-export const TYPE_BTN_SIGN_IN = 'sign-in';
-export const TYPE_BTN_REGISTER = 'sign-up';
-export const TYPE_BTN_RESTORE = 'restore';
-export const TYPE_BTN_ADD = 'add';
-export const TYPE_BTN_EDIT = 'edit';
-export const TYPE_BTN_REPORT_GO = 'go-report';
-export const TYPE_BTN_REPORT_MAKE = 'make-report';
-export const TYPE_BTN_SAVE = 'save';
-
 export const TYPE_INPUT_EMAIL = 'email';
 export const TYPE_INPUT_PASSWORD = 'password';
 export const TYPE_INPUT_PASSWORD_SECOND = 'password_second';
@@ -85,14 +100,6 @@ export const TYPE_ICON_FILLED_HELP = 'filled_help';
 export const TYPE_ICON_ADD = 'add'
 export const TYPE_INPUT_CLIENT_ID = 'client_id';
 export const TYPE_INPUT_CLIENT_SECRET = 'client_secret';
-
-export const PATH_HOME = '/';
-export const PATH_SIGN_IN = "/login";
-export const PATH_SIGN_UP = "/register";
-export const PATH_RESTORE = "/restore";
-export const PATH_REPORT_SHAPER = "/report/shaper";
-export const PATH_CABINET = "/cabinet";
-export const PATH_MAIN_REPORT = "/main";
 
 export const REPORT_IN_PROGRESS = 'В процессе формирования';
 export const REPORT_READY = 'Сформирован';
@@ -117,11 +124,6 @@ export const CARD_ADVERTISING = [
     company: 'ВКонтакте',
     company_id: 13159
   },
-  {
-    _id: 2,
-    company: 'MyTarget',
-    company_id: 25603
-  }
 ]
 
 export const TYPE_FILTER_OFFICES = 'Кабинеты';
@@ -213,5 +215,101 @@ export const METRICS  = [
     show_start: true,
     name: 'Потрачено',
     text_info: ''
+  }
+]
+
+export const TABLE_CABINET_COLUMN = [
+  {
+    id: 1,
+    textEn: 'name',
+    textRU: 'Отчёт'
+  },
+  {
+    id: 2,
+    textEn: 'status',
+    textRU: 'Статус'
+  },
+  {
+    id: 3,
+    textEn: 'date',
+    textRU: 'Дата формирования'
+  },
+  {
+    id: 4,
+    textEn: 'download',
+    textRU: 'Скачать'
+  },
+]
+
+export const TABLE_CABINET_ROWS = [
+  {
+    id: 1,
+    name: 'Общий отчёт',
+    status: REPORT_IN_PROGRESS,
+    date: '18.11.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 2,
+    name: 'Эффективность проектов',
+    status: REPORT_READY,
+    date: '10.11.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 3,
+    name: 'Динамика расходов',
+    status: REPORT_READY,
+    date: '10.11.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 4,
+    name: 'Влияние трафика на продажи',
+    status: REPORT_ERROR,
+    date: '29.10.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 5,
+    name: 'Общий отчёт',
+    status: REPORT_IN_PROGRESS,
+    date: '18.11.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 6,
+    name: 'Эффективность проектов',
+    status: REPORT_READY,
+    date: '10.11.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 7,
+    name: 'Динамика расходов',
+    status: REPORT_READY,
+    date: '10.11.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 8,
+    name: 'Влияние трафика на продажи',
+    status: REPORT_ERROR,
+    date: '29.10.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 9,
+    name: 'Динамика расходов',
+    status: REPORT_READY,
+    date: '10.11.2022',
+    download: 'скачать в XLS'
+  },
+  {
+    id: 10,
+    name: 'Влияние трафика на продажи',
+    status: REPORT_ERROR,
+    date: '29.10.2022',
+    download: 'скачать в XLS'
   }
 ]

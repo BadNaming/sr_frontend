@@ -3,8 +3,8 @@
   position: absolute;
   top: 0;
   right: 0;
-
   background-color: transparent;
+  width: max-content;
 }
 
 .wrapper_visible {

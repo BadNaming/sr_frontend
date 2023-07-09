@@ -1,0 +1,91 @@
+.target_platform {}
+
+.target_platform_item {
+  padding: 6px 30px;
+  border-radius: 4px;
+  background: #b3e5fc;
+  color: var(--color-links);
+  font-size: 16px;
+  font-family: Roboto;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.report_filtering {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 19px;
+}
+
+.left_side {
+  display: inline-flex;
+  justify-content: flex-start;
+  gap: 20px;
+  height: 40px;
+  width: 100%;
+}
+
+.right_side {
+  display: inline-flex;
+  justify-content: flex-end;
+  gap: 20px;
+  height: 40px;
+  width: 100%;
+}
+
+.report_history_date {
+  display: flex;
+  align-items: center;
+  width: 352px;
+  height: 40px;
+}
+
+.date_pickers {
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+}
+
+.calendar {
+  background-color: transparent;
+  border: none !important;
+  z-index: 2;
+}
+
+.space {
+  margin: 0px 11px;
+}
+
+.groupping_item {
+  padding: 8px 0;
+  font-size: 16px;
+  font-family: Roboto;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.groupping_item_name {
+  color: var(--color-main);
+}
+
+.groupping_item_value {
+  color: #7a7b83;
+}
+
+.table {
+  width: 100%;
+  height: 386px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0px 0px;
+  margin-bottom: 29px;
+}
+
+.group_button {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 20px;
+  align-self: flex-end;
+}

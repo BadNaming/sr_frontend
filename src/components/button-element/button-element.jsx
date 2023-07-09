@@ -6,7 +6,10 @@ import {
   TYPE_BTN_RESTORE,
   TYPE_BTN_ADD,
   TYPE_BTN_EDIT,
-  TYPE_BTN_REPORT_GO, TYPE_BTN_REPORT_MAKE,
+  TYPE_BTN_REPORT_GO,
+  TYPE_BTN_REPORT_MAKE,
+  TYPE_BTN_REPORT_SETTINGS,
+  TYPE_BTN_REPORT_DOWNLOAD,
   TYPE_BTN_SAVE,
   TEXT_BTN_TRY,
   TEXT_BTN_SIGN_IN,
@@ -14,6 +17,8 @@ import {
   TEXT_BTN_REGISTER,
   TEXT_BTN_REPORT_GO,
   TEXT_BTN_REPORT_MAKE,
+  TEXT_BTN_REPORT_SETTINGS,
+  TEXT_BTN_REPORT_DOWNLOAD,
   TEXT_BTN_SAVE,
   TEXT_BTN_EDIT
 } from "../../utils/constants";
@@ -31,7 +36,7 @@ const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave }) => {
     switch (type) {
       case TYPE_BTN_TRY:
         setTextBtn(TEXT_BTN_TRY);
-        setStyleBtn(`${styles.btn} ${styles.btn_try} ${styles.btn_try_show}`);
+        setStyleBtn(`${styles.btn} ${styles.btn_try}`);
         break;
       case TYPE_BTN_SIGN_IN:
         setTextBtn(TEXT_BTN_SIGN_IN);
@@ -55,6 +60,14 @@ const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave }) => {
         break;
       case TYPE_BTN_REPORT_MAKE:
         setTextBtn(TEXT_BTN_REPORT_MAKE);
+        setStyleBtn(`${styles.btn} ${styles.btn_theme_blue}`);
+        break;
+      case TYPE_BTN_REPORT_SETTINGS:
+        setTextBtn(TEXT_BTN_REPORT_SETTINGS);
+        setStyleBtn(`${styles.btn} ${styles.btn_theme_transparent}`);
+        break;
+      case TYPE_BTN_REPORT_DOWNLOAD:
+        setTextBtn(TEXT_BTN_REPORT_DOWNLOAD);
         setStyleBtn(`${styles.btn} ${styles.btn_theme_blue}`);
         break;
       case TYPE_BTN_SAVE:

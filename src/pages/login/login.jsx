@@ -1,4 +1,3 @@
-import globalStyles from '../../components/global-styles.module.css';
 import ButtonElement from '../../components/button-element/button-element';
 import InputElement from "../../components/input-element/input-element";
 import {
@@ -18,18 +17,16 @@ const Login = () => {
 
   const handleSubmint = (e) => {
     e.preventDefault();
-
-    console.log('yes')
     // если форма валидна - добавить пользователя
     isValid && dispatch(addUser())
   };
 
   return (
-    <form className={globalStyles.form} onSubmit={handleSubmint}>
-      <fieldset className={globalStyles.fieldset}>
+    <form onSubmit={handleSubmint}>
+      <fieldset>
         <InputElement type={TYPE_INPUT_EMAIL} value={values.email} onChange={handleChange}/>
       </fieldset>
-      <fieldset className={globalStyles.fieldset}>
+      <fieldset>
         <InputElement type={TYPE_INPUT_PASSWORD} value={values.password} onChange={handleChange}/>
       </fieldset>
       <ButtonElement type={TYPE_BTN_SIGN_IN}/>

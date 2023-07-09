@@ -5,29 +5,15 @@ import {
   TEXT_IMG_LEAD,
   TYPE_BTN_TRY,
   CARD_INFO_LEAD,
-  PATH_REPORT_SHAPER,
-  PATH_CABINET,
   PATH_SIGN_IN
 } from "../../utils/constants";
 import ImgLead from "../../images/lead_page.svg";
 import CardInfo from "../card-info/card-info";
-import ButtonElement from '../button-element/button-element'
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import ButtonElement from '../button-element/button-element';
+import { useNavigate } from "react-router-dom";
 
 const Lead = () => {
-  const [classTitle, setClassTitle] = useState(`${styles.title}`);
-  const [classSubtitle, setClassSubtitle] = useState(`${styles.subtitle}`);
-  const [classImg, setClassImg] = useState(`${styles.img}`);
-  const [classCards, setClassCards] = useState(`${styles.cards}`);
   const navigate = useNavigate();
-
-  useEffect(()=>{
-    setClassTitle(`${styles.title} ${styles.title_show}`);
-    setClassSubtitle(`${styles.subtitle} ${styles.subtitle_show}`);
-    setClassImg(`${styles.img} ${styles.img_show}`);
-    setClassCards(`${styles.cards} ${styles.cards_show}`)
-  }, []);
 
   const handleRedirectSignIn = () => {
     navigate(PATH_SIGN_IN)
@@ -35,12 +21,12 @@ const Lead = () => {
 
   return (
     <section className={styles.lead}>
-      <h1 className={classTitle}>{TEXT_LEAD_PAGE}</h1>
-      <p className={classSubtitle}>{TEXT_LEAD_ABOUT}</p>
+      <h1 className={styles.title}>{TEXT_LEAD_PAGE}</h1>
+      <p className={styles.subtitle}>{TEXT_LEAD_ABOUT}</p>
       <section className={styles.container}>
-        <img src={ImgLead} alt={TEXT_IMG_LEAD} className={classImg}/>
+        <img src={ImgLead} alt={TEXT_IMG_LEAD} className={styles.img}/>
         <div className={styles.content}>
-          <div className={classCards}>
+          <div className={styles.cards}>
             {CARD_INFO_LEAD.map((card) => (
               <CardInfo key={card._id} card={card} />
             ))}
@@ -48,8 +34,6 @@ const Lead = () => {
           <ButtonElement type={TYPE_BTN_TRY} onClick={handleRedirectSignIn} />
         </div>
       </section>
-      <Link to={PATH_REPORT_SHAPER} style={{color: "red", padding: 10, border: '2 solid red'}}>СФОРМИРОВАТЬ ОТЧЕТ</Link>
-      <Link to={PATH_CABINET} style={{color: "red", padding: 10, border: '2 solid red'}}>ЛИЧНЫЙ КАБИНЕТ</Link>
     </section>
   );
 };

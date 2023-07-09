@@ -2,16 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transform: translateY(-60px);
   max-width: 1216px;
   margin: 9px auto 0;
   width: 100%;
   padding-bottom: 23px;
-}
-
-.header_show {
-  transform: translateY(0);
-  transition: 1s linear;
 }
 
 .links {
@@ -27,6 +21,12 @@
 
 .links_user {
   gap: 10px;
+}
+
+.link {
+  text-decoration: none;
+  font-family: var(--font-Main);
+  cursor: var(--cursor);
 }
 
 .link_header {
@@ -60,6 +60,7 @@
   gap: 10px;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
 .img_avatar {

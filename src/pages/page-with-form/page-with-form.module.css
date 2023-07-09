@@ -39,6 +39,9 @@
 
 .link {
   color: #7A7B83;
+  text-decoration: none;
+  font-family: var(--font-Main);
+  cursor: var(--cursor);
 }
 
 .link:hover{

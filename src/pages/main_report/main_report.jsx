@@ -5,7 +5,9 @@ import {
   REPORT_READY,
   REPORT_ERROR,
   TYPE_INPUT_CLIENT_ID,
-  TYPE_INPUT_CLIENT_SECRET
+  TYPE_INPUT_CLIENT_SECRET,
+  TYPE_BTN_REPORT_GO,
+  TYPE_BTN_REPORT_MAKE
 } from '../../utils/constants'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
@@ -14,6 +16,7 @@ import SimpleInputElement from '../../components/simple-input-element/simple-inp
 import Footer from '../../components/footer/footer'
 import SortingModal from '../../components/sorting_modal/sorting_modal'
 import CheckMarks from './checkmarks'
+import ButtonElement from '../../components/button-element/button-element'
 
 const MainReport = () => {
   const [hoveredColumn, setHoveredColumn] = useState(null)
@@ -325,6 +328,10 @@ const MainReport = () => {
               </tbody>
             </table> */}
           </div>
+          <div className={styles.group_button}>
+        <ButtonElement type={TYPE_BTN_REPORT_GO} />
+        <ButtonElement type={TYPE_BTN_REPORT_MAKE} />
+      </div>
         </div>
         <Footer />
       </div>

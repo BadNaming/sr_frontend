@@ -1,5 +1,4 @@
 import styles from "./page-with-form.module.css";
-import globalStyles from '../../components/global-styles.module.css';
 import {
   TEXT_PAGE_SIGN_IN,
   TEXT_PAGE_REGISTER,
@@ -43,10 +42,10 @@ const PageWithForm = ({ children }) => {
         {children}
         {location.pathname === PATH_SIGN_IN && (
           <ul className={styles.links}>
-            <NavLink to={PATH_SIGN_UP} className={`${globalStyles.link} ${styles.link}`}>
+            <NavLink to={PATH_SIGN_UP} className={styles.link}>
               {TEXT_LINK_REGISTER}
             </NavLink>
-            <NavLink to={PATH_RESTORE} className={`${globalStyles.link} ${styles.link}`}>
+            <NavLink to={PATH_RESTORE} className={styles.link}>
               {TEXT_LINK_RESTORE}
             </NavLink>
           </ul>
@@ -59,7 +58,7 @@ const PageWithForm = ({ children }) => {
             </label>
             <p className={styles.subtitle}>
               {TEXT_DATA_PROCESSING}
-              <Link to={"/"} className={`${globalStyles.link} ${styles.link_active}`}>
+              <Link to={"/"} className={`${styles.link} ${styles.link_active}`}>
                 {TEXT_DATA_PROCESSING_LINK}
               </Link>
             </p>

@@ -1,26 +1,45 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  // user: null,
-  user: 'Константинов Константин',
-  // isAuthenticated: false,
-  isAuthenticated: true,
+  user: null,
+  isAuthenticated: false,
   onSuccess: null,
   errors: null,
-  // email: null,
-  email: 'study.business@yandex.ru',
   AdvPlatform: null,
   AdvCabinet: null,
   isAdvCabinet: false
-
 };
+
+// const initialState = {
+//   user: {
+//     name: 'Константинов Константин',
+//     email: 'study.business@yandex.ru',
+//     phone: '8 (919) 558-37-45'
+//   },
+//   // user: null,
+//   isAuthenticated: true,
+//   onSuccess: null,
+//   errors: null,
+//   AdvPlatform: {
+//     _id: 1,
+//     company: 'ВКонтакте',
+//     company_id: 13159
+//   },
+//   AdvCabinet: null,
+//   isAdvCabinet: false
+// };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     addUser: (state) => {
-      state.user = 'Константинов Константин';
+      state.user = {
+        name: 'Константинов Константин',
+        email: 'study.business@yandex.ru',
+        phone: '8 (919) 558-37-45'
+      };
+      // state.user = {};
       state.isAuthenticated = true;
     },
     addAdvPlatform: (state, action) => {

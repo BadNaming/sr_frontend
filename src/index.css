@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./vendor/fonts/RobotoCondensed-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./vendor/fonts/RobotoCondensed-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./vendor/fonts/Roboto-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./vendor/fonts/Roboto-Medium.ttf) format("truetype");
+}
+
 body {
   max-width: 1920px;
   -webkit-font-smoothing: antialiased;
@@ -9,4 +41,70 @@ body {
   display: grid;
   grid-template-rows: max-content 1fr;
   margin: 0 auto;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-style:  normal;
+  font-weight: 400;
+  --font-Main: 'Roboto', sans-serif, -apple-system, BlinkMacSystemFont;
+  --font-Additional: 'Roboto Condensed', sans-serif, -apple-system, BlinkMacSystemFont;
+  --cursor: pointer;
+  --cursor-custom: url(./images/cursor.svg) 4 1, url(./images/cursor.png) 4 1, pointer;
+  --color-overlay: rgba(240, 241, 250, 0.9);
+  --color-special: #9c27b0;
+  --color-links: #2196F3;
+  --color-errors: #D32F2F;
+  --color-main: #444444;;
+  --color-main-secondary: #7A7B83;
+}
+
+button {
+  border: none;
+  font-family: var(--font-Main);
+  font-weight: 500;
+  cursor: var(--cursor);
+}
+
+input {
+  font-family: var(--font-Main);
+  outline: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+  font-family: var(--font-Additional);
+}
+
+p {
+  color: #7A7B83;
+  font-family: var(--font-Additional);
+}
+
+ul {
+  list-style: none;
+}
+
+label {
+  font-family: var(--font-Main);
+}
+
+span {
+  font-family: var(--font-Main);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }

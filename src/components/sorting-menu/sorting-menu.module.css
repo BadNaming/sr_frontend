@@ -1,0 +1,22 @@
+.sorting_icon_container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.icon_vert_dots_container {
+  width: 20px;
+  height: 20px;
+}
+
+.icon_vert_dots_container:hover .icon_vert_dots {
+  fill: #2196f3;
+}
+
+.icon_vert_dots {
+  fill: rgba(0, 0, 0, 0.54);
+  transition: all 0.3s ease;
+}
+
+

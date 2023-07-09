@@ -2,17 +2,14 @@ import React from 'react'
 import SelectInput from '../../pages/cabinet/select'
 import styles from './sorting_modal.module.css'
 
-const SortingModal = ({ isVisible, onChange, leftPosition, width }) => {
-  if (isVisible) {
+const SortingModal = ({ onChange, column, isSortingVisible }) => {
+  if (column === isSortingVisible) {
     return (
-      <div
-        className={styles.report_modal}
-        style={{ left: leftPosition, width }}
-      >
+      <div className={styles.report_modal}>
         <SelectInput onChange={onChange} />
       </div>
     )
   }
   return null
 }
-export default SortingModal
+export default SortingModal;

@@ -1,7 +1,5 @@
 export const getUser = ({ auth }) => auth.user;
 
-export const getEmail = ({ auth }) => auth.email;
-
 export const isAuthentication = ({ auth }) => auth.isAuthenticated;
 
 export const isSuccess = ({ auth }) => auth.onSuccess;
