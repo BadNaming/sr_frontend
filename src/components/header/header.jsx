@@ -5,15 +5,13 @@ import {
   TEXT_LOGO,
   TEXT_SIGN_IN,
   TEXT_SIGN_UP,
-  TEXT_LINK_WATCH_REPORT,
-  PATH_HOME,
   PATH_SIGN_IN,
-  PATH_SIGN_UP
+  PATH_SIGN_UP,
+  PATH_REPORT_MAIN
 } from '../../utils/constants';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../store/auth/selectors';
-import IconChart from '../../images/icon_chart.svg';
 import HeaderMenu from '../header-menu/header-menu';
 
 const Header = () => {
@@ -21,17 +19,6 @@ const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const user = useSelector(getUser);
   const location = useLocation();
-
-
-  useEffect(() => {
-    user
-      ? setListLink(`${styles.links} ${styles.links_user}`)
-      : setListLink(`${styles.links}`)
-  }, [user])
-
-  useEffect(()=>{
-    setIsShowMenu(false)
-  }, [location.pathname])
 
   const heandleUserName = () => {
     const arr = user.name.split(' ')
@@ -46,24 +33,23 @@ const Header = () => {
     setIsShowMenu(false)
   }
 
+  useEffect(() => {
+    user
+      ? setListLink(`${styles.links} ${styles.links_user}`)
+      : setListLink(`${styles.links}`)
+  }, [user])
+
+  useEffect(()=>{
+    setIsShowMenu(false)
+  }, [location.pathname])
+
   return (
     <header className={styles.header}>
-      <Link to={PATH_HOME} className={styles.link}>
+      <Link to={PATH_REPORT_MAIN} className={styles.link}>
         <img src={Logo} alt={TEXT_LOGO} />
       </Link>
       <ul className={classListLink}>
         {user ? (
-          <>
-            <NavLink
-              to={PATH_HOME}
-              className={`${styles.link} ${styles.container_avatar}`}
-
-            >
-              <p className={`${styles.subtitle} ${styles.disabled}`}>
-                {TEXT_LINK_WATCH_REPORT}
-              </p>
-              <img src={IconChart} alt="Изображение диаграммы"></img>
-            </NavLink>
             <div
               className={styles.container_avatar}
               onMouseEnter={handleShowMenu}
@@ -73,9 +59,8 @@ const Header = () => {
               <span className={styles.img_avatar}>
                 {heandleUserName().slice(0, 1)}
               </span>
-              <HeaderMenu isShowMenu={isShowMenu}/>
+              <HeaderMenu isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu}/>
             </div>
-          </>
         ) : (
           <>
             <NavLink

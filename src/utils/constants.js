@@ -2,8 +2,8 @@ export const PATH_HOME = '/';
 export const PATH_SIGN_IN = "/login";
 export const PATH_SIGN_UP = "/register";
 export const PATH_RESTORE = "/restore";
-export const PATH_REPORT_SETTINGS = "/report/settings";
-export const PATH_REPORT_MAIN = "/report/main";
+export const PATH_REPORT_SETTINGS = "/report-settings";
+export const PATH_REPORT_MAIN = "/report-main";
 export const PATH_CABINET = "/cabinet";
 export const PATH_MAIN_REPORT = "/main";
 
@@ -53,9 +53,9 @@ export const TEXT_DATA_PROCESSING_LINK = 'политике конфиденци�
 
 export const TEXT_LINK_REGISTER = 'Зарегистрироваться';
 export const TEXT_LINK_RESTORE = 'Восстановить пароль';
-export const TEXT_LINK_WATCH_REPORT = 'Посмотреть отчёт';
 export const TEXT_LINK_PROFILE = 'Профиль';
 export const TEXT_LINK_REPORTS = 'Мои отчёты';
+export const TEXT_LINK_REPORTS_SETTINGS = 'Настроить отчёт';
 export const TEXT_LINK_LOGOUT = 'Выйти';
 
 export const TEXT_PLACEHOLDER_EMAIL = 'E-mail';
@@ -312,4 +312,102 @@ export const TABLE_CABINET_ROWS = [
     date: '29.10.2022',
     download: 'скачать в XLS'
   }
+]
+
+export const TABLE_REPORT_MAIN_COLUMN = [
+  {
+    id: 1,
+    textEn: 'name',
+    textRU: 'Кампания',
+    text_info: ''
+  },
+  {
+    id: 2,
+    textEn: 'showing',
+    textRU: 'Показы',
+    text_info: ''
+  },
+  {
+    id: 3,
+    textEn: 'cpm',
+    textRU: 'CPM',
+    text_info: 'цена 1000 показов'
+  },
+  {
+    id: 4,
+    textEn: 'clicks',
+    textRU: 'Клики',
+    text_info: ''
+  },
+  {
+    id: 5,
+    textEn: 'ctr',
+    textRU: 'CTR',
+    text_info: 'отношение переходов к показам'
+  },
+  {
+    id: 6,
+    textEn: 'cpc',
+    textRU: 'CPC',
+    text_info: 'цена клика'
+  },
+  {
+    id: 7,
+    textEn: 'cr',
+    textRU: 'CR% Подписчики',
+    text_info: 'конверсия клика в подписку'
+  },
+  {
+    id: 8,
+    textEn: 'cpf',
+    textRU: 'CPF',
+    text_info: 'цена подписчика'
+  },
+]
+
+export const TABLE_REPORT_MAIN_ROWS = [
+  {
+    id: 1,
+    name: 'Вебинар',
+    showing: 12000,
+    cpm: 833,
+    clicks: 400,
+    ctr: 3,
+    cpc: 25,
+    cr: 18,
+    cpf: 42
+  },
+  {
+    id: 2,
+    name: 'Промо акция',
+    showing: 20000,
+    cpm: 1250,
+    clicks: 7000,
+    ctr: 35,
+    cpc: 3.5,
+    cr: 27,
+    cpf: 18
+  },
+  {
+    id: 3,
+    name: 'Наружная реклама',
+    showing: 25000,
+    cpm: 1200,
+    clicks: 5000,
+    ctr: 20,
+    cpc: 6,
+    cr: 50,
+    cpf: 37
+  },
+  {
+    id: 4,
+    name: 'E-mail рассылки',
+    showing: 15000,
+    cpm: 666,
+    clicks: 12000,
+    ctr: 80,
+    cpc: 0.83,
+    cr: 46,
+    cpf: 14
+  },
 ]

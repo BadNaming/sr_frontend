@@ -3,34 +3,42 @@ import { useSelector } from 'react-redux'
 import { getUser } from '../../store/auth/selectors'
 import IconLogout from '../../images/icon_logout.svg'
 import IconProfile from '../../images/icon_profile.svg'
-import IconChart from '../../images/icon_chart_ligth.svg'
-import { Link, useNavigate } from 'react-router-dom'
+import IconChartLigth from '../../images/icon_chart_ligth.svg'
+import IconChart from '../../images/icon_chart.svg'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   PATH_CABINET,
   PATH_HOME,
-  PATH_MAIN_REPORT,
   TEXT_LINK_PROFILE,
   TEXT_LINK_REPORTS,
   TEXT_LINK_LOGOUT,
-  PATH_REPORT_MAIN
+  TEXT_LINK_REPORTS_SETTINGS,
+  PATH_REPORT_MAIN,
+  PATH_REPORT_SETTINGS
 } from '../../utils/constants'
 import { useEffect, useState } from 'react'
 
-const HeaderMenu = ({ isShowMenu }) => {
+const HeaderMenu = ({ isShowMenu, setIsShowMenu }) => {
   const [classMenu, setClassMenu] = useState(`${styles.wrapper}`);
   const user = useSelector(getUser);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClickCloseMenu = () => {
+    console.log('click', isShowMenu)
+    setIsShowMenu(false)
+  }
 
   const onlogout = () => {
-    navigate(PATH_HOME);
-    window.location.reload();
-  };
+    navigate(PATH_HOME)
+    window.location.reload()
+  }
 
   useEffect(() => {
     isShowMenu
       ? setClassMenu(`${styles.wrapper} ${styles.wrapper_visible}`)
       : setClassMenu(`${styles.wrapper}`)
-  }, [isShowMenu]);
+  }, [isShowMenu])
 
   return (
     <article className={classMenu}>
@@ -43,14 +51,36 @@ const HeaderMenu = ({ isShowMenu }) => {
         </div>
         <div className={styles.border}></div>
         <ul className={`${styles.container} ${styles.list_links}`}>
-          <Link to={PATH_CABINET} className={styles.link_container}>
-            <img src={IconProfile} alt="Изображение профиля"></img>
-            <p className={styles.subtitle}>{TEXT_LINK_PROFILE}</p>
-          </Link>
-          <Link to={PATH_REPORT_MAIN} className={styles.link_container}>
-            <img src={IconChart} alt="Изображение диаграммы"></img>
-            <p className={styles.subtitle}>{TEXT_LINK_REPORTS}</p>
-          </Link>
+          {location.pathname !== PATH_CABINET && (
+            <Link
+              to={PATH_CABINET}
+              className={styles.link_container}
+              onClick={handleClickCloseMenu}
+            >
+              <img src={IconProfile} alt="Изображение профиля"></img>
+              <p className={styles.subtitle}>{TEXT_LINK_PROFILE}</p>
+            </Link>
+          )}
+          {location.pathname !== PATH_REPORT_MAIN && (
+            <Link
+              to={PATH_REPORT_MAIN}
+              className={styles.link_container}
+              onClick={handleClickCloseMenu}
+            >
+              <img src={IconChartLigth} alt="Изображение диаграммы"></img>
+              <p className={styles.subtitle}>{TEXT_LINK_REPORTS}</p>
+            </Link>
+          )}
+          {location.pathname !== PATH_REPORT_SETTINGS && (
+            <Link
+              to={PATH_REPORT_SETTINGS}
+              className={styles.link_container}
+              onClick={handleClickCloseMenu}
+            >
+              <img src={IconChart} alt="Изображение диаграммы"></img>
+              <p className={styles.subtitle}>{TEXT_LINK_REPORTS_SETTINGS}</p>
+            </Link>
+          )}
         </ul>
         <div className={styles.border}></div>
         <Link
@@ -61,7 +91,7 @@ const HeaderMenu = ({ isShowMenu }) => {
           <img src={IconLogout} alt="Изображение выход"></img>
           <p className={styles.subtitle}>{TEXT_LINK_LOGOUT}</p>
         </Link>
-</div>
+      </div>
     </article>
   )
 }

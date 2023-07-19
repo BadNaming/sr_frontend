@@ -24,7 +24,7 @@ import {
 } from "../../utils/constants";
 import { useEffect, useState } from "react";
 
-const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave }) => {
+const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave, disabled }) => {
   const [textBtn, setTextBtn] = useState("");
   const [styleBtn, setStyleBtn] = useState(`${styles.btn}`);
 
@@ -90,6 +90,7 @@ const ButtonElement = ({ type, onClick, onMouseEnter, onMouseLeave }) => {
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        disabled={disabled}
       >
         {textBtn}
       </button>

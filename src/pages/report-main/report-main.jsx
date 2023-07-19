@@ -13,6 +13,7 @@ import CheckMarks from './checkmarks'
 import { DesktopDatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import TableReportMain from '../../components/table-report-main/table-report-main';
 
 const ReportMain = () => {
   const navigate = useNavigate()
@@ -87,7 +88,9 @@ const ReportMain = () => {
             </div>
           </div>
         </section>
-        <section className={styles.table}></section>
+        <section className={styles.table}>
+          <TableReportMain/>
+        </section>
         <div className={styles.group_button}>
           <ButtonElement
             type={TYPE_BTN_REPORT_SETTINGS}

@@ -1,7 +1,7 @@
-import styles from './report-settings.module.css';
-import CardAdvertising from '../../components/card-advertising/card-advertising';
-import ButtonElement from '../../components/button-element/button-element';
-import SelectElement from '../../components/select-element/select-element';
+import styles from './report-settings.module.css'
+import CardAdvertising from '../../components/card-advertising/card-advertising'
+import ButtonElement from '../../components/button-element/button-element'
+import SelectElement from '../../components/select-element/select-element'
 import {
   TEXT_PAGE_REPORT_SETTINGS_SUBTITLE,
   TEXT_SELECT_METRICS,
@@ -15,10 +15,10 @@ import {
   TYPE_FILTER_DATA_REPORT,
   TYPE_FILTER_METRICS,
   PATH_REPORT_MAIN
-} from '../../utils/constants';
-import { useNavigate } from 'react-router-dom';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+} from '../../utils/constants'
+import { useNavigate } from 'react-router-dom'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 const ReportSettings = () => {
   const navigate = useNavigate()
@@ -26,6 +26,10 @@ const ReportSettings = () => {
   const handleClickReportMake = () => {
     navigate(PATH_REPORT_MAIN)
   }
+
+  /** Router - один и тот же PATH_REPORT_MAIN, условия разные
+   * "Перейти к отчету" - это посмотреть отчет в текущем виде
+   * "Сформировать отчет" - это принять изменения настроек и перейти к отчету */
 
   return (
     <>
@@ -58,7 +62,11 @@ const ReportSettings = () => {
           <SelectElement type={TYPE_FILTER_METRICS} />
         </div>
         <div className={styles.group_button}>
-          <ButtonElement type={TYPE_BTN_REPORT_GO} />
+          <ButtonElement
+            disabled
+            type={TYPE_BTN_REPORT_GO}
+            onClick={handleClickReportMake}
+          />
           <ButtonElement
             type={TYPE_BTN_REPORT_MAKE}
             onClick={handleClickReportMake}
