@@ -1,6 +1,6 @@
 import ButtonElement from '../../components/button-element/button-element'
 import InputElement from '../../components/input-element/input-element'
-import { useFormWithValidation } from '../../hooks/useForm'
+import { useForm, useFormWithValidation } from '../../hooks/useForm'
 import { useRegisterUserMutation } from '../../store/auth/services/auth'
 import {
   TYPE_BTN_REGISTER,
@@ -18,34 +18,24 @@ const Register = () => {
 
   const passwordValidation = {
     password: (input) => {
-      console.log('calling PasswordValidation')
-      if (input !== values.password_second) {
-        console.log(input, values.password_second)
+      if (input.password !== values.password_second) {
         return 'passwords are not equal'
       } else {
-        return null
+        return 'passwords are equal'
       }
     }
   }
 
   const { values, handleChange, isValid, errors
-  } = useFormWithValidation({
-    first_name: '',
-    last_name: '',
+  } = useForm({
     email: '',
-    phone: '',
     password: '',
-    password_second: ''
-  },
-    passwordValidation
-  )
+  })
 
 
   const handleRegister = (e) => {
     e.preventDefault()
-    if (isValid) {
-      console.log(values)
-    }
+    console.log(isValid)
   }
 
   return (
@@ -70,7 +60,7 @@ const Register = () => {
         <fieldset>
           <InputElement type={TYPE_INPUT_PASSWORD_SECOND} value={values.password_second} onChange={handleChange} />
         </fieldset>
-        <ButtonElement disabled={isValid} type={TYPE_BTN_REGISTER} />
+        <ButtonElement type={TYPE_BTN_REGISTER} />
       </form>
     </>
   )

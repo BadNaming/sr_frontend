@@ -15,8 +15,8 @@ import {
 import TableCabinet from '../../components/table-cabinet/table-cabinet'
 import SimpleInputElement from '../../components/simple-input-element/simple-input-element'
 import { useDispatch } from 'react-redux'
-import { addAdvCabinet } from '../../store/auth'
 import ButtonElement from '../../components/button-element/button-element'
+import { addAdvCabinet } from '../../store/auth/authSlice'
 
 const Cabinet = () => {
   const dispatch = useDispatch()

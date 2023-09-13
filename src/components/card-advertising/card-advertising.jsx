@@ -8,7 +8,7 @@ import {
 } from '../../utils/constants'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { addAdvPlatform } from '../../store/auth';
+import { addAdvPlatform } from '../../store/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { isAdvCabinetSuccess, getAdvPlatform } from '../../store/auth/selectors'
 
@@ -21,9 +21,9 @@ const CardAdvertising = ({ card }) => {
   const AdvPlatform = useSelector(getAdvPlatform)
 
   useEffect(() => {
-    if(AdvPlatform && isAdvCabinet){
+    if (AdvPlatform && isAdvCabinet) {
       card.company_id === AdvPlatform.company_id ? setClassCard(`${styles.card_hidden}`) : setClassCard(`${styles.card}`)
-    }else{
+    } else {
       setClassCard(`${styles.card}`)
     }
   }, [AdvPlatform, isAdvCabinet, card.company_id])

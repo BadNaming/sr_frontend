@@ -15,11 +15,13 @@ import {
   TEXT_PLACEHOLDER_ERROR,
   TEXT_SPAN_PHONE,
   TEXT_ICON_PASSWORD,
+  TEXT_PLACEHOLDER_LASTNAME,
+  TYPE_INPUT_LASTNAME,
 } from "../../utils/constants";
 import imgShowPassword from "../../images/icon_show_password.svg";
 import imgHisePassword from "../../images/icon_hide_password.svg";
 
-const InputElement = ({ type, value, onChange}) => {
+const InputElement = ({ type, value, onChange }) => {
   const { values, handleChange, errors } = useForm("");
   const [placeholder, setPlaceholder] = useState(`${type}`);
   const [isShowTextPassword, setIsShowTextPassword] = useState(true);
@@ -50,6 +52,9 @@ const InputElement = ({ type, value, onChange}) => {
         break;
       case TYPE_INPUT_NAME:
         setPlaceholder(TEXT_PLACEHOLDER_NAME);
+        break;
+      case TYPE_INPUT_LASTNAME:
+        setPlaceholder(TEXT_PLACEHOLDER_LASTNAME);
         break;
       case TYPE_INPUT_PHONE:
         setPlaceholder(TEXT_PLACEHOLDER_PHONE);
@@ -101,7 +106,7 @@ const InputElement = ({ type, value, onChange}) => {
       handlePlaceholderInput();
       showLabel();
       setClassInput(`${styles.input}`);
-      type === TYPE_INPUT_PHONE ? setError(TEXT_SPAN_PHONE): setError('');
+      type === TYPE_INPUT_PHONE ? setError(TEXT_SPAN_PHONE) : setError('');
       setClassError(`${styles.span}`)
     }
   };
@@ -126,13 +131,13 @@ const InputElement = ({ type, value, onChange}) => {
       <span className={classError}>{error}</span>
       {(type === TYPE_INPUT_PASSWORD ||
         type === TYPE_INPUT_PASSWORD_SECOND) && (
-        <img
-          src={iconPassword}
-          alt={TEXT_ICON_PASSWORD}
-          className={styles.icon}
-          onClick={toggleShowPassword}
-        />
-      )}
+          <img
+            src={iconPassword}
+            alt={TEXT_ICON_PASSWORD}
+            className={styles.icon}
+            onClick={toggleShowPassword}
+          />
+        )}
     </>
   );
 };
