@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './cabinet.module.css'
 import { getUser } from '../../store/auth/selectors'
 import { LocalizationProvider } from '@mui/x-date-pickers'
@@ -16,7 +16,9 @@ import TableCabinet from '../../components/table-cabinet/table-cabinet'
 import SimpleInputElement from '../../components/simple-input-element/simple-input-element'
 import { useDispatch } from 'react-redux'
 import ButtonElement from '../../components/button-element/button-element'
-import { addAdvCabinet } from '../../store/auth/authSlice'
+import { addAdvPlatform } from '../../store/auth/authSlice'
+import { useUpdateUserMutation } from '../../store/auth/services/auth'
+import { useAddDailyDataMutation } from '../../store/auth/services/reports'
 
 const Cabinet = () => {
   const dispatch = useDispatch()
@@ -28,19 +30,41 @@ const Cabinet = () => {
     [TYPE_INPUT_CLIENT_ID]: '',
     [TYPE_INPUT_CLIENT_SECRET]: ''
   })
+  const [updateUser, { isLoading: isLoadingUser, isError: isErrorUser, isSuccess: isSuccessUser, data: userData }] = useUpdateUserMutation()
+  const [fetchDaliyData, { isLoading: isLoadingData, isError: isErrorData, isSuccess: isSuccessData, data: dailyData }] = useAddDailyDataMutation()
 
   const onChange = (e) => {
     e.preventDefault()
     setCredentials({
       ...credentials,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      vk_client_token: 'eKppLLD7bq3R58MvrO7knzmW9FAA50WErNre2RyPapDSnI5Ecbw1LHVfhb212ie9ZRKZnbngzo4SnOQ9JCMnIS8A5OfkjuXdiubkXjfW8JfdzFLbciGYJaKVIDjVk9D18FcTD7kUbFNzAgXYidtHlCK9uP8OI1Rutxs9k2tTL3JLlbigavm38IKxZ43w6dcJDyRm2d6WvoonPajnmVFwhd6GZiOl'
     })
   }
 
+  useEffect(() => {
+    if (userData)
+      fetchDaliyData()
+  }, [fetchDaliyData, userData])
+
+  useEffect(() => {
+    if (dailyData)
+      dailyData.map((campaign) => {
+        dispatch(addAdvPlatform({
+          ad_plan_name: campaign.ad_plan_name,
+          ad_plan_id: campaign.ad_plan_id,
+        }))
+      })
+  }, [dailyData, dispatch])
+
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    dispatch(addAdvCabinet(credentials))
-    setTextButtonSubmit(TYPE_BTN_EDIT)
+    updateUser(credentials).unwrap().then(async (res) => {
+      console.log(res)
+      if ('id' in res) {
+        setTextButtonSubmit(TYPE_BTN_EDIT)
+      }
+    }).catch((err) => err)
   }
 
   return (

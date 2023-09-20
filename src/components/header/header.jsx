@@ -21,8 +21,7 @@ const Header = () => {
   const location = useLocation();
 
   const heandleUserName = () => {
-    const arr = user.name.split(' ')
-    return arr[1]
+    return user.first_name
   }
 
   const handleShowMenu = () => {
@@ -39,7 +38,7 @@ const Header = () => {
       : setListLink(`${styles.links}`)
   }, [user])
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsShowMenu(false)
   }, [location.pathname])
 
@@ -50,17 +49,17 @@ const Header = () => {
       </Link>
       <ul className={classListLink}>
         {user ? (
-            <div
-              className={styles.container_avatar}
-              onMouseEnter={handleShowMenu}
-              onMouseLeave={handleHiddenMenu}
-            >
-              <p className={styles.subtitle}>{heandleUserName()}</p>
-              <span className={styles.img_avatar}>
-                {heandleUserName().slice(0, 1)}
-              </span>
-              <HeaderMenu isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu}/>
-            </div>
+          <div
+            className={styles.container_avatar}
+            onMouseEnter={handleShowMenu}
+            onMouseLeave={handleHiddenMenu}
+          >
+            <p className={styles.subtitle}>{heandleUserName()}</p>
+            <span className={styles.img_avatar}>
+              {heandleUserName().slice(0, 1)}
+            </span>
+            <HeaderMenu isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
+          </div>
         ) : (
           <>
             <NavLink

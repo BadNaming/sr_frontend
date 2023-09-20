@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { BASE_URL } from '../../../utils/constants'
+import { APP_NAME, BASE_URL } from '../../../utils/constants'
 
 export const simplereportsAPI = createApi({
   reducerPath: 'simplereportsAPI',
@@ -13,8 +13,29 @@ export const simplereportsAPI = createApi({
         method: 'POST',
         body: createUserDto
       })
+    }),
+    getToken: builder.mutation({
+      query: (credentials) => ({
+        url: `auth/token/login/`,
+        method: 'POST',
+        body: credentials
+      })
+    }),
+    updateUser: builder.mutation({
+      query: (patch) => ({
+        url: `auth/users/me/`,
+        method: 'PATCH',
+        body: patch,
+        headers: {
+          Authorization: `Token ${localStorage.getItem(`${APP_NAME}Token`)}`
+        }
+      })
     })
   })
 })
 
-export const { useRegisterUserMutation } = simplereportsAPI
+export const {
+  useRegisterUserMutation,
+  useGetTokenMutation,
+  useUpdateUserMutation
+} = simplereportsAPI

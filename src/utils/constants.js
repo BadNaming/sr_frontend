@@ -101,12 +101,12 @@ export const TYPE_INPUT_PASSWORD = 'password'
 export const TYPE_INPUT_PASSWORD_SECOND = 'password_second'
 export const TYPE_INPUT_NAME = 'first_name'
 export const TYPE_INPUT_LASTNAME = 'last_name'
-export const TYPE_INPUT_PHONE = 'phone'
+export const TYPE_INPUT_PHONE = 'phone_number'
 export const TYPE_ICON_FILLED = 'filled'
 export const TYPE_ICON_FILLED_HELP = 'filled_help'
 export const TYPE_ICON_ADD = 'add'
-export const TYPE_INPUT_CLIENT_ID = 'client_id'
-export const TYPE_INPUT_CLIENT_SECRET = 'client_secret'
+export const TYPE_INPUT_CLIENT_ID = 'vk_client_id'
+export const TYPE_INPUT_CLIENT_SECRET = 'vk_client_secret'
 
 export const REPORT_IN_PROGRESS = 'В процессе формирования'
 export const REPORT_READY = 'Сформирован'
@@ -416,3 +416,4 @@ export const TABLE_REPORT_MAIN_ROWS = [
 ]
 
 export const BASE_URL = 'http://127.0.0.1:8000/api/'
+export const APP_NAME = 'SimpleReports'

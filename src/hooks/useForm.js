@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export function useForm(inputValues) {
   const [values, setValues] = useState(inputValues)
   const [errors, setErrors] = useState({})
   const [isValid, setIsValid] = useState(false)
 
-  /** изменения в input */
   const handleChange = (e) => {
     const { value, name } = e.target
     setValues({ ...values, [name]: value })
@@ -22,37 +21,39 @@ export function useForm(inputValues) {
   }
 }
 
-//хук управления формой и валидации формы
 export function useFormWithValidation(inputValues, customHandlers) {
-  const [values, setValues] = useState({ inputValues })
+  const [values, setValues] = useState(inputValues)
   const [errors, setErrors] = useState({})
   const [isValid, setIsValid] = useState(false)
 
-  useEffect(() => {
-    checkValues()
-  }, [values])
+  const handleChange = async (event) => {
+    const target = event.target
+    const name = target.name
+    const value = target.value
 
-  const checkValues = () => {
-    console.log(isValid)
-    const validationErrors = {}
-    if (customHandlers) {
-      Object.keys(values).forEach((key) => {
-        const value = values[key]
-        const validator = customHandlers && customHandlers[key]
-        if (validator) {
-          validationErrors[key] = validator(value)
-        }
-      })
+    setValues((prevValues) => ({ ...prevValues, [name]: value }))
+
+    const newErrors = {}
+
+    const form = target.closest('form')
+    const formElements = Array.from(form.elements).filter(
+      (element) => element.tagName === 'INPUT'
+    )
+
+    formElements.forEach((element) => {
+      if (!element.checkValidity()) {
+        newErrors[element.name] = element.validationMessage
+      }
+    })
+
+    for (const key of Object.keys(customHandlers)) {
+      const customError = customHandlers[key]({ ...values, [name]: value })
+      if (customError) {
+        newErrors[key] = customError
+      }
     }
-    setErrors(validationErrors)
-    setIsValid(Object.keys(validationErrors).length === 0)
-  }
-
-  const handleChange = (event) => {
-    const { value, name } = event.target
-    console.log(event.target)
-    setValues({ ...values, [name]: value })
-    setErrors({ ...errors, [name]: event.target.validationMessage })
+    setErrors({ ...newErrors })
+    setIsValid(Object.keys(newErrors).length === 0)
   }
 
   const resetForm = useCallback(
@@ -66,7 +67,6 @@ export function useFormWithValidation(inputValues, customHandlers) {
 
   return {
     values,
-    setValues,
     handleChange,
     errors,
     isValid,

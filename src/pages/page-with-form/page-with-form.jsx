@@ -53,6 +53,7 @@ const PageWithForm = ({ children }) => {
         {location.pathname === PATH_SIGN_UP && (
           <div className={styles.content}>
             <label className={styles.label}>
+              {/* TODO: связать это с состоянием формы */}
               <input type="checkbox" className={styles.input} />
               <span className={styles.visible_checkbox}></span>
             </label>

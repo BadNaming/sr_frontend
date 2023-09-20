@@ -21,9 +21,9 @@ import {
 import imgShowPassword from "../../images/icon_show_password.svg";
 import imgHisePassword from "../../images/icon_hide_password.svg";
 
-const InputElement = ({ type, value, onChange }) => {
+const InputElement = ({ name, inputType, value, onChange }) => {
   const { values, handleChange, errors } = useForm("");
-  const [placeholder, setPlaceholder] = useState(`${type}`);
+  const [placeholder, setPlaceholder] = useState(`${name}`);
   const [isShowTextPassword, setIsShowTextPassword] = useState(true);
   const [iconPassword, setIconPassword] = useState(imgShowPassword);
   const [classInput, setClassInput] = useState(`${styles.input}`);
@@ -43,9 +43,10 @@ const InputElement = ({ type, value, onChange }) => {
     showError();
   }, [errors]);
 
+
   /** установка текста, стиля в зависимости от типа поля input */
   const handlePlaceholderInput = () => {
-    switch (type) {
+    switch (name) {
       case TYPE_INPUT_PASSWORD:
         setPlaceholder(TEXT_PLACEHOLDER_PASSWORD);
         setClassInput(`${styles.input} ${styles.input_hide}`);
@@ -87,26 +88,26 @@ const InputElement = ({ type, value, onChange }) => {
 
   /** показывать label если поле input заполненно */
   const showLabel = () => {
-    values[type]
+    values[name]
       ? setClassLabel(`${styles.label} ${styles.label_visible}`)
       : setClassLabel(`${styles.label}`);
   };
 
   /** показать ошибку если поле input не валидно */
   const showError = () => {
-    if (errors[type]) {
+    if (errors[name]) {
       setPlaceholder(TEXT_PLACEHOLDER_ERROR);
       setClassLabel(
         `${styles.label} ${styles.label_visible} ${styles.label_error}`
       );
       setClassInput(`${styles.input} ${styles.input_error}`);
-      setError(errors[type]);
+      setError(errors[name]);
       setClassError(`${styles.span} ${styles.span_error}`)
     } else {
       handlePlaceholderInput();
       showLabel();
       setClassInput(`${styles.input}`);
-      type === TYPE_INPUT_PHONE ? setError(TEXT_SPAN_PHONE) : setError('');
+      name === TYPE_INPUT_PHONE ? setError(TEXT_SPAN_PHONE) : setError('');
       setClassError(`${styles.span}`)
     }
   };
@@ -114,23 +115,20 @@ const InputElement = ({ type, value, onChange }) => {
   return (
     <>
       <input
-        id={type}
-        name={type}
-        type="text"
+        id={name}
+        name={name}
+        type={inputType === "password" ? (isShowTextPassword ? "password" : "text") : inputType}
         placeholder={placeholder}
         className={classInput}
-        // value={values.type}
-        // onChange={handleChange}
-        minLength={3}
         value={value}
         onChange={onChange}
       />
-      <label htmlFor={type} className={classLabel}>
+      <label htmlFor={inputType} className={classLabel}>
         {placeholder}
       </label>
       <span className={classError}>{error}</span>
-      {(type === TYPE_INPUT_PASSWORD ||
-        type === TYPE_INPUT_PASSWORD_SECOND) && (
+      {(name === TYPE_INPUT_PASSWORD ||
+        name === TYPE_INPUT_PASSWORD_SECOND) && (
           <img
             src={iconPassword}
             alt={TEXT_ICON_PASSWORD}

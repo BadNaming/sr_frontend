@@ -5,7 +5,7 @@ const initialState = {
   isAuthenticated: false,
   onSuccess: null,
   errors: null,
-  AdvPlatform: null,
+  AdvPlatform: [],
   AdvCabinet: null,
   isAdvCabinet: false
 }
@@ -14,20 +14,22 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    addUser: (state) => {
+    addUser: (state, action) => {
+      console.log(action.payload)
       state.user = {
-        name: 'Константинов Константин',
-        email: 'study.business@yandex.ru',
-        phone: '8 (919) 558-37-45'
+        ...action.payload
       }
       state.isAuthenticated = true
     },
     addAdvPlatform: (state, action) => {
-      state.AdvPlatform = action.payload
+      state.AdvPlatform.push(action.payload)
     },
     addAdvCabinet: (state, action) => {
       state.AdvCabinet = action.payload
       state.isAdvCabinet = true
+    },
+    addAddPlans: (state, action) => {
+      state.AddPlans.push(action.payload)
     }
   }
 })
