@@ -19,17 +19,57 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { useCreateReportMutation } from '../../store/auth/services/reports'
+import React, { useEffect, useState } from 'react'
+import { convertDate } from '../../utils/helpers'
+import { getAdvPlatform } from '../../store/auth/selectors'
+import { useSelector } from 'react-redux'
+
 
 const ReportSettings = () => {
-  const navigate = useNavigate()
+  const [dates, setDates] = useState({
+    startDate: new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
+    endDate: new Date()
+  })
+  const [metrics, setMetrics] = useState(['shows', 'spend'])
+  /* TODO: выбрать все кампании по умолчанию */
+  const [campaigns, setCampaigns] = useState([])
+  const advPlatforms = useSelector(getAdvPlatform)
+  const [createReport, { data: reportData, isSuccess: reportIsSuccess }] = useCreateReportMutation()
+
+  useEffect(() => {
+    if (reportIsSuccess && reportData) {
+      console.log(reportData)
+    }
+  })
+
+  useEffect(() => {
+    if (advPlatforms.length > 0) {
+      setCampaigns(advPlatforms.map((item) => item.ad_plan_name))
+    }
+  }, [advPlatforms]
+  )
+
 
   const handleClickReportMake = () => {
-    navigate(PATH_REPORT_MAIN)
+    if (dates.startDate && dates.endDate) {
+      createReport({
+        start_date: convertDate(dates.startDate),
+        end_date: convertDate(dates.endDate),
+        ad_plans: campaigns,
+        metrics
+      })
+    }
+    /* navigate(PATH_REPORT_MAIN) */
   }
 
   /** Router - один и тот же PATH_REPORT_MAIN, условия разные
    * "Перейти к отчету" - это посмотреть отчет в текущем виде
    * "Сформировать отчет" - это принять изменения настроек и перейти к отчету */
+
+  if (campaigns.length === 0) {
+    return null
+  }
 
   return (
     <>
@@ -42,37 +82,29 @@ const ReportSettings = () => {
         </div>
         <div className={styles.group_fillter}>
           <SelectElement type={TYPE_FILTER_OFFICES} />
-          <SelectElement type={TYPE_FILTER_CAMPAIGN} />
-          <SelectElement type={TYPE_FILTER_DATA_REPORT} />
-          <SelectElement type={TYPE_FILTER_GROUPING} />
+          <SelectElement data={campaigns} handleSelect={setCampaigns} type={TYPE_FILTER_CAMPAIGN} />
+          <SelectElement handleSelect={setDates} type={TYPE_FILTER_DATA_REPORT} />
         </div>
         <div className={styles.group_subtitle}>
           <p className={styles.subtitle}>{TEXT_SELECT_METRICS}</p>
-          <div className={styles.group_with_checkbox}>
-            <label className={styles.label}>
-              <input type="checkbox" className={styles.input} />
-              <span className={styles.visible_checkbox}></span>
-            </label>
-            <p className={`${styles.subtitle} ${styles.subtitle_type_smal}`}>
-              {TEXT_ADD_BREAKDOWN}
-            </p>
-          </div>
         </div>
         <div className={styles.group_metrics}>
-          <SelectElement type={TYPE_FILTER_METRICS} />
+          <SelectElement handleSelect={setMetrics} type={TYPE_FILTER_METRICS} />
         </div>
         <div className={styles.group_button}>
           <ButtonElement
-            disabled
+            disabled={!reportIsSuccess}
+            /* TODO: у нас должна быть страница конкретного отчета? У нас есть страница со всеми отчетами, где её можно скачать, а также страница со сводными данными */
             type={TYPE_BTN_REPORT_GO}
             onClick={handleClickReportMake}
           />
           <ButtonElement
+            disabled={campaigns.length === 0}
             type={TYPE_BTN_REPORT_MAKE}
             onClick={handleClickReportMake}
           />
         </div>
-      </LocalizationProvider>
+      </LocalizationProvider >
     </>
   )
 }

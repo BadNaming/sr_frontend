@@ -56,7 +56,7 @@ const Header = () => {
           >
             <p className={styles.subtitle}>{heandleUserName()}</p>
             <span className={styles.img_avatar}>
-              {heandleUserName().slice(0, 1)}
+              {heandleUserName()}
             </span>
             <HeaderMenu isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
           </div>

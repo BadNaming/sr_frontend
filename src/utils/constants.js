@@ -107,10 +107,11 @@ export const TYPE_ICON_FILLED_HELP = 'filled_help'
 export const TYPE_ICON_ADD = 'add'
 export const TYPE_INPUT_CLIENT_ID = 'vk_client_id'
 export const TYPE_INPUT_CLIENT_SECRET = 'vk_client_secret'
+export const TYPE_INPUT_CLIENT_VK_TOKEN = 'vk_client_token'
 
-export const REPORT_IN_PROGRESS = 'В процессе формирования'
-export const REPORT_READY = 'Сформирован'
-export const REPORT_ERROR = 'Ошибка формирования'
+export const REPORT_IN_PROGRESS = 'process'
+export const REPORT_READY = 'ready'
+export const REPORT_ERROR = 'error'
 
 export const CARD_INFO_LEAD = [
   {
@@ -137,7 +138,7 @@ export const CARD_ADVERTISING = [
 
 export const TYPE_FILTER_OFFICES = 'Кабинеты'
 export const TEXT_FILTER_OFFICES = 'Выберите кабинеты'
-export const OFFICES = ['Парадигма', 'Импульс медиа']
+export const OFFICES = ['ВКонтакте']
 
 export const TYPE_FILTER_CAMPAIGN = 'Кампании'
 export const TEXT_FILTER_CAMPAIGN = 'Выберите кампании'
@@ -159,47 +160,54 @@ export const TEXT_FILTER_DATA_FINISH = 'Конец периода'
 
 export const TYPE_FILTER_METRICS = 'Настройки таблицы'
 export const METRICS = [
-  {
+  /* {
     show_start: true,
     name: 'Кампания',
-    text_info: ''
-  },
+    text_info: '',
+    nameEn: 'campaign'
+  }, */
   {
     show_start: true,
     name: 'Показы',
-    text_info: ''
-  },
-  {
-    show_start: true,
-    name: 'CPM',
-    text_info: 'цена 1000 показов'
-  },
-  {
-    show_start: true,
-    name: 'Клики',
-    text_info: ''
-  },
-  {
-    show_start: true,
-    name: 'CTR',
-    text_info: 'отношение переходов к показам'
-  },
-  {
-    show_start: true,
-    name: 'CPC',
-    text_info: 'цена клика'
+    text_info: '',
+    nameEn: 'shows'
   },
   {
     show_start: false,
-    name: 'CR% Подписчики',
-    text_info: 'конверсия клика в подписку'
+    name: 'CPM',
+    text_info: 'цена 1000 показов',
+    nameEn: 'cpm'
   },
   {
+    show_start: false,
+    name: 'Клики',
+    text_info: '',
+    nameEn: 'clicks'
+  },
+  {
+    show_start: false,
+    name: 'CTR',
+    text_info: 'отношение переходов к показам',
+    nameEn: 'ctr'
+  },
+  {
+    show_start: false,
+    name: 'CPC',
+    text_info: 'цена клика',
+    nameEn: 'cpc'
+  },
+  /* {
+    show_start: false,
+    name: 'CR% Подписчики',
+    text_info: 'конверсия клика в подписку',
+    
+  }, */
+  /*  {
     show_start: false,
     name: 'CPF',
     text_info: 'цена подписчика'
-  },
-  {
+  }, */
+  /*  {
     show_start: false,
     name: 'Лиды',
     text_info: ''
@@ -208,23 +216,24 @@ export const METRICS = [
     show_start: false,
     name: 'CR% Лиды',
     text_info: 'конверсия клика в подписку'
-  },
-  {
+  }, */
+  /*  {
     show_start: false,
     name: 'CPL',
     text_info: 'цена лида'
-  },
+  }, */
   {
     show_start: true,
     name: 'Потрачено',
-    text_info: ''
+    text_info: '',
+    nameEn: 'spend'
   }
 ]
 
 export const TABLE_CABINET_COLUMN = [
   {
     id: 1,
-    textEn: 'name',
+    textEn: 'title',
     textRU: 'Отчёт'
   },
   {
@@ -326,45 +335,39 @@ export const TABLE_REPORT_MAIN_COLUMN = [
   },
   {
     id: 2,
+    textEn: 'spent',
+    textRU: 'Потрачено',
+    text_info: ''
+  },
+  {
+    id: 3,
     textEn: 'showing',
     textRU: 'Показы',
     text_info: ''
   },
   {
-    id: 3,
+    id: 4,
     textEn: 'cpm',
     textRU: 'CPM',
     text_info: 'цена 1000 показов'
   },
   {
-    id: 4,
+    id: 5,
     textEn: 'clicks',
     textRU: 'Клики',
     text_info: ''
   },
   {
-    id: 5,
+    id: 6,
     textEn: 'ctr',
     textRU: 'CTR',
     text_info: 'отношение переходов к показам'
   },
   {
-    id: 6,
+    id: 7,
     textEn: 'cpc',
     textRU: 'CPC',
     text_info: 'цена клика'
-  },
-  {
-    id: 7,
-    textEn: 'cr',
-    textRU: 'CR% Подписчики',
-    text_info: 'конверсия клика в подписку'
-  },
-  {
-    id: 8,
-    textEn: 'cpf',
-    textRU: 'CPF',
-    text_info: 'цена подписчика'
   }
 ]
 
@@ -415,5 +418,6 @@ export const TABLE_REPORT_MAIN_ROWS = [
   }
 ]
 
-export const BASE_URL = 'http://127.0.0.1:8000/api/'
+/* export const BASE_URL = 'http://127.0.0.1:8000/api/' */
+export const BASE_URL = 'http://195.133.13.177/api/'
 export const APP_NAME = 'SimpleReports'

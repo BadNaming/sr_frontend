@@ -1,60 +1,56 @@
 import ButtonElement from '../../components/button-element/button-element';
 import InputElement from "../../components/input-element/input-element";
 import {
+  APP_NAME,
   TYPE_BTN_SIGN_IN,
   TYPE_INPUT_EMAIL,
   TYPE_INPUT_PASSWORD,
-  TYPE_INPUT_PHONE,
-  TYPE_INPUT_NAME,
-  TYPE_INPUT_LASTNAME
 } from "../../utils/constants";
 import { useForm } from '../../hooks/useForm';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../store/auth/authSlice';
-import { useRegisterUserMutation } from '../../store/auth/services/auth';
-
+import { useGetTokenMutation, useGetUserDataQuery } from '../../store/auth/services/auth';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const [registerUser, { isError, isLoading, isSuccess }] = useRegisterUserMutation()
   const dispatch = useDispatch();
   const { values, handleChange, isValid } = useForm(
-    { first_name: "", last_name: "", phone: "", email: "", password: "" }
+    { email: "", password: "" }
   );
+  const [getToken, { isError: isErrorToken, isLoading: isLoadingToken, isSucces: isSuccessToken, data: tokenData }] = useGetTokenMutation()
+  const { data: userData, isError: isErrorUserData, isLoading: isLoadingUserData, isSuccess: isSuccessUserData, refetch: refetchUserData } = useGetUserDataQuery()
+  const navigate = useNavigate()
 
+  useEffect(() => {
+    if (tokenData) {
+      localStorage.setItem(`${APP_NAME}Token`, tokenData.auth_token)
+      refetchUserData()
+    }
+  }, [refetchUserData, tokenData])
 
+  useEffect(() => {
+    if (userData) {
+      dispatch(addUser({ ...userData }))
+      navigate('/cabinet')
+    }
+  }, [dispatch, navigate, userData])
 
   const handleSubmint = async (e) => {
     e.preventDefault();
-    console.log(values)
-    const user = await registerUser({
-      first_name: values.first_name,
-      last_name: values.last_name,
-      phone_number: values.phone,
-      email: values.email,
-      password: values.password
-    })
-    console.log(user)
-    isValid && dispatch(addUser())
+    if (isValid) {
+      getToken(values)
+    }
   };
 
   return (
     <form onSubmit={handleSubmint}>
       <fieldset>
-        <InputElement type={TYPE_INPUT_EMAIL} value={values.email} onChange={handleChange} />
+        <InputElement name={TYPE_INPUT_EMAIL} value={values.email} onChange={handleChange} />
       </fieldset>
       <fieldset>
-        <InputElement type={TYPE_INPUT_NAME} value={values.first_name} onChange={handleChange} />
+        <InputElement name={TYPE_INPUT_PASSWORD} value={values.password} onChange={handleChange} />
       </fieldset>
-      <fieldset>
-        <InputElement type={TYPE_INPUT_LASTNAME} value={values.last_name} onChange={handleChange} />
-      </fieldset>
-      <fieldset>
-        <InputElement type={TYPE_INPUT_PHONE} value={values.phone_number} onChange={handleChange} />
-      </fieldset>
-      <fieldset>
-        <InputElement type={TYPE_INPUT_PASSWORD} value={values.password} onChange={handleChange} />
-      </fieldset>
-
       <ButtonElement type={TYPE_BTN_SIGN_IN} />
     </form>
   );

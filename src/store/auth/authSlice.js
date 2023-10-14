@@ -7,7 +7,8 @@ const initialState = {
   errors: null,
   AdvPlatform: [],
   AdvCabinet: null,
-  isAdvCabinet: false
+  isAdvCabinet: false,
+  statistics: []
 }
 
 const authSlice = createSlice({
@@ -15,7 +16,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      console.log(action.payload)
       state.user = {
         ...action.payload
       }
@@ -30,10 +30,14 @@ const authSlice = createSlice({
     },
     addAddPlans: (state, action) => {
       state.AddPlans.push(action.payload)
+    },
+    setStatistics: (state, action) => {
+      state.statistics = action.payload
     }
   }
 })
 
-export const { addUser, addAdvPlatform, addAdvCabinet } = authSlice.actions
+export const { addUser, addAdvPlatform, addAdvCabinet, setStatistics } =
+  authSlice.actions
 
 export default authSlice.reducer

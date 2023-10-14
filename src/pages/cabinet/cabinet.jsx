@@ -9,6 +9,7 @@ import {
   TEXT_REPORT_HISTORY,
   TYPE_INPUT_CLIENT_ID,
   TYPE_INPUT_CLIENT_SECRET,
+  TYPE_INPUT_CLIENT_VK_TOKEN,
   TYPE_BTN_SAVE,
   TYPE_BTN_EDIT
 } from '../../utils/constants'
@@ -18,34 +19,58 @@ import { useDispatch } from 'react-redux'
 import ButtonElement from '../../components/button-element/button-element'
 import { addAdvPlatform } from '../../store/auth/authSlice'
 import { useUpdateUserMutation } from '../../store/auth/services/auth'
-import { useAddDailyDataMutation } from '../../store/auth/services/reports'
+import { useAddDailyDataMutation, useGetReportsQuery } from '../../store/auth/services/reports'
 
 const Cabinet = () => {
+
+  const convertDate = (date) => {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
   const dispatch = useDispatch()
   const [textButtonSubmit, setTextButtonSubmit] = useState(TYPE_BTN_SAVE)
   const user = useSelector(getUser)
-  const [startDate, setStartDate] = useState(new Date())
-  const [endData, setEndDate] = useState(new Date())
+  const [startDate, setStartDate] = useState(new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000));
+  const [endDate, setEndDate] = useState(new Date());
   const [credentials, setCredentials] = useState({
     [TYPE_INPUT_CLIENT_ID]: '',
-    [TYPE_INPUT_CLIENT_SECRET]: ''
+    [TYPE_INPUT_CLIENT_SECRET]: '',
+    [TYPE_INPUT_CLIENT_VK_TOKEN]: 'eKppLLD7bq3R58MvrO7knzmW9FAA50WErNre2RyPapDSnI5Ecbw1LHVfhb212ie9ZRKZnbngzo4SnOQ9JCMnIS8A5OfkjuXdiubkXjfW8JfdzFLbciGYJaKVIDjVk9D18FcTD7kUbFNzAgXYidtHlCK9uP8OI1Rutxs9k2tTL3JLlbigavm38IKxZ43w6dcJDyRm2d6WvoonPajnmVFwhd6GZiOl',
   })
   const [updateUser, { isLoading: isLoadingUser, isError: isErrorUser, isSuccess: isSuccessUser, data: userData }] = useUpdateUserMutation()
   const [fetchDaliyData, { isLoading: isLoadingData, isError: isErrorData, isSuccess: isSuccessData, data: dailyData }] = useAddDailyDataMutation()
+  const { data: reports, isSuccess, refetch: reportsRefetch } = useGetReportsQuery({ startDate: convertDate(startDate), endDate: convertDate(endDate) })
+
+  useEffect(() => {
+    if (user[TYPE_INPUT_CLIENT_ID] && user[TYPE_INPUT_CLIENT_SECRET]) {
+      setCredentials({
+        [TYPE_INPUT_CLIENT_ID]: user[TYPE_INPUT_CLIENT_ID],
+        [TYPE_INPUT_CLIENT_SECRET]: user[TYPE_INPUT_CLIENT_SECRET],
+        [TYPE_INPUT_CLIENT_VK_TOKEN]: user[TYPE_INPUT_CLIENT_VK_TOKEN],
+      })
+      setTextButtonSubmit(TYPE_BTN_EDIT)
+      fetchDaliyData()
+    }
+  }, [user])
 
   const onChange = (e) => {
     e.preventDefault()
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value,
-      vk_client_token: 'eKppLLD7bq3R58MvrO7knzmW9FAA50WErNre2RyPapDSnI5Ecbw1LHVfhb212ie9ZRKZnbngzo4SnOQ9JCMnIS8A5OfkjuXdiubkXjfW8JfdzFLbciGYJaKVIDjVk9D18FcTD7kUbFNzAgXYidtHlCK9uP8OI1Rutxs9k2tTL3JLlbigavm38IKxZ43w6dcJDyRm2d6WvoonPajnmVFwhd6GZiOl'
     })
   }
+
+  useEffect(() => { reportsRefetch() }, [startDate, endDate, reportsRefetch])
 
   useEffect(() => {
     if (userData)
       fetchDaliyData()
   }, [fetchDaliyData, userData])
+
 
   useEffect(() => {
     if (dailyData)
@@ -57,10 +82,10 @@ const Cabinet = () => {
       })
   }, [dailyData, dispatch])
 
+
   const handleFormSubmit = (e) => {
     e.preventDefault()
     updateUser(credentials).unwrap().then(async (res) => {
-      console.log(res)
       if ('id' in res) {
         setTextButtonSubmit(TYPE_BTN_EDIT)
       }
@@ -105,14 +130,14 @@ const Cabinet = () => {
             />
             <div className={styles.space}>-</div>
             <DesktopDatePicker
-              value={endData}
+              value={endDate}
               onChange={(date) => setEndDate(date)}
               slotProps={{ textField: { size: 'small' } }}
             />
           </div>
         </div>
         <div className={styles.table_container}>
-          <TableCabinet />
+          <TableCabinet reports={reports} isSuccess={isSuccess} />
         </div>
       </LocalizationProvider>
     </>

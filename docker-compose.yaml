@@ -1,0 +1,20 @@
+version: "3"
+services:
+  nginx-server:
+    image: nginx:1.19.3
+    ports:
+      - "8009:8009"
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - app-volume:/var/www/html/simple-reports
+  react-app:
+    container_name: my_react_app
+    image: kapshtykas/simplreports
+    volumes:
+      - .:/react_app
+      - app-volume:/app/build/
+
+volumes:
+  app-volume:
+

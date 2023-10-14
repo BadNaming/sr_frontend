@@ -1,15 +1,24 @@
 import styles from './table-cabinet.module.css'
+import axios from 'axios'
 import {
+  BASE_URL,
   REPORT_IN_PROGRESS,
   REPORT_READY,
   TABLE_CABINET_COLUMN,
-  TABLE_CABINET_ROWS
 } from '../../utils/constants'
 import SortingMenu from '../sorting-menu/sorting-menu'
 import SortingModal from '../sorting_modal/sorting_modal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-const TableCabinet = () => {
+const TableCabinet = ({ reports, isSuccess }) => {
+  useEffect(() => {
+    if (reports) {
+      reports.map((report) => console.log(new Date(report.date).toLocaleDateString()))
+
+    }
+
+  }, [reports])
+
   const [hoveredColumn, setHoveredColumn] = useState(null)
   const [isSortingVisible, setIsSortingVisible] = useState(null)
 
@@ -32,7 +41,7 @@ const TableCabinet = () => {
   const handleSortingChange = (column) => (value) => {
     handleShowSortingModal(column)
     if (value === 'ASC') {
-      return TABLE_CABINET_ROWS.sort((a, b) => {
+      return reports.sort((a, b) => {
         if (a[column] < b[column]) {
           return -1
         } else {
@@ -40,7 +49,7 @@ const TableCabinet = () => {
         }
       })
     } else if (value === 'DESC') {
-      return TABLE_CABINET_ROWS.sort((a, b) => {
+      return reports.sort((a, b) => {
         if (a[column] < b[column]) {
           return 1
         } else {
@@ -48,11 +57,31 @@ const TableCabinet = () => {
         }
       })
     } else {
-      TABLE_CABINET_ROWS.sort((a, b) => {
+      reports.sort((a, b) => {
         return parseFloat(a.id) - parseFloat(b.id)
       })
     }
   }
+
+  const downloadFile = async (reportId) => {
+    try {
+      const response = await axios.get(`${BASE_URL}v1/report/download/${reportId}`, {
+        responseType: 'blob',
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `report-${reportId}.xls`);
+      document.body.appendChild(link);
+      link.click();
+
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Ошибка при скачивании файла:', error);
+    }
+  };
+
 
   return (
     <>
@@ -85,13 +114,13 @@ const TableCabinet = () => {
           </tr>
         </thead>
         <tbody className={styles.table_body}>
-          {TABLE_CABINET_ROWS &&
-            TABLE_CABINET_ROWS.map((item, index) => (
+          {isSuccess && reports &&
+            reports.map((item, index) => (
               <tr key={item.id} className={styles.container_column}>
                 <td className={styles.table_column}>
                   {++index}
                   {'. '}
-                  {item.name}
+                  {item.title}
                 </td>
                 <td className={styles.table_column}>
                   <div className={styles.row_with_icon}>
@@ -101,22 +130,20 @@ const TableCabinet = () => {
                           item.status === REPORT_IN_PROGRESS
                             ? styles.update_icon
                             : item.status === REPORT_READY
-                            ? styles.checked_icon
-                            : styles.info_icon
+                              ? styles.checked_icon
+                              : styles.info_icon
                         }
                       ></div>
                     </div>
-                    <div>{item.status}</div>
+                    <div>{item.status === REPORT_IN_PROGRESS ? 'В процессе подготовки' : item.status === REPORT_READY ? 'Готов' : 'Ошибка'}</div>
                   </div>
                 </td>
-                <td className={styles.table_column}>{item.date}</td>
+                <td className={styles.table_column}>{new Date(item.date).toLocaleDateString()}</td>
                 <td className={styles.table_column}>
                   <div className={styles.row_with_icon}>
                     <div
                       className={styles.icon_container_download}
-                      onClick={() => {
-                        alert(item.id)
-                      }}
+                      onClick={() => downloadFile(item.id)}
                     >
                       <svg
                         width="16"

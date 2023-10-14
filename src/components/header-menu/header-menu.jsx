@@ -14,7 +14,8 @@ import {
   TEXT_LINK_LOGOUT,
   TEXT_LINK_REPORTS_SETTINGS,
   PATH_REPORT_MAIN,
-  PATH_REPORT_SETTINGS
+  PATH_REPORT_SETTINGS,
+  APP_NAME
 } from '../../utils/constants'
 import { useEffect, useState } from 'react'
 
@@ -32,6 +33,7 @@ const HeaderMenu = ({ isShowMenu, setIsShowMenu }) => {
   const onlogout = () => {
     navigate(PATH_HOME)
     window.location.reload()
+    localStorage.removeItem(`${APP_NAME}Token`)
   }
 
   useEffect(() => {

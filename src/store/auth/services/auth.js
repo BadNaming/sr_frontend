@@ -30,6 +30,15 @@ export const simplereportsAPI = createApi({
           Authorization: `Token ${localStorage.getItem(`${APP_NAME}Token`)}`
         }
       })
+    }),
+    getUserData: builder.query({
+      query: () => ({
+        url: 'auth/users/me/',
+        method: 'GET',
+        headers: {
+          Authorization: `Token ${localStorage.getItem(`${APP_NAME}Token`)}`
+        }
+      })
     })
   })
 })
@@ -37,5 +46,6 @@ export const simplereportsAPI = createApi({
 export const {
   useRegisterUserMutation,
   useGetTokenMutation,
-  useUpdateUserMutation
+  useUpdateUserMutation,
+  useGetUserDataQuery
 } = simplereportsAPI

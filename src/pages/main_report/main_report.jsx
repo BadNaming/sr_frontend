@@ -1,5 +1,5 @@
 import styles from './main_report.module.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   REPORT_IN_PROGRESS,
   REPORT_READY,
@@ -7,16 +7,19 @@ import {
   TYPE_INPUT_CLIENT_ID,
   TYPE_INPUT_CLIENT_SECRET,
   TYPE_BTN_REPORT_GO,
-  TYPE_BTN_REPORT_MAKE
+  TYPE_BTN_REPORT_MAKE,
+  TYPE_INPUT_CLIENT_VK_TOKEN
 } from '../../utils/constants'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { DesktopDatePicker } from '@mui/x-date-pickers'
-import SimpleInputElement from '../../components/simple-input-element/simple-input-element'
 import Footer from '../../components/footer/footer'
 import SortingModal from '../../components/sorting_modal/sorting_modal'
 import CheckMarks from './checkmarks'
 import ButtonElement from '../../components/button-element/button-element'
+import { useSelector } from 'react-redux'
+import { getUser } from '../../store/auth/selectors'
+import { useAddDailyDataMutation } from '../../store/auth/services/reports'
 
 const MainReport = () => {
   const [hoveredColumn, setHoveredColumn] = useState(null)
@@ -47,7 +50,22 @@ const MainReport = () => {
     'Наружная реклама',
     'E-mail рассылки'
   ]
-  const [reports, setReports] = useState([
+
+  const user = useSelector(getUser)
+  const [fetchDaliyData, { isLoading: isLoadingData, isError: isErrorData, isSuccess: isSuccessData, data: dailyData }] = useAddDailyDataMutation()
+  useEffect(() => {
+    if (user[TYPE_INPUT_CLIENT_ID] && user[TYPE_INPUT_CLIENT_SECRET]) {
+      setCredentials({
+        [TYPE_INPUT_CLIENT_ID]: user[TYPE_INPUT_CLIENT_ID],
+        [TYPE_INPUT_CLIENT_SECRET]: user[TYPE_INPUT_CLIENT_SECRET],
+        [TYPE_INPUT_CLIENT_VK_TOKEN]: user[TYPE_INPUT_CLIENT_VK_TOKEN],
+      })
+      fetchDaliyData()
+    }
+  }, [fetchDaliyData, user])
+
+
+  /* const [reports, setReports] = useState([
     {
       id: 1,
       name: 'Общий отчёт',
@@ -108,7 +126,7 @@ const MainReport = () => {
       status: REPORT_ERROR,
       date: '29.10.2022'
     }
-  ])
+  ]) */
 
   const onChange = (e) => {
     e.preventDefault()
@@ -329,9 +347,9 @@ const MainReport = () => {
             </table> */}
           </div>
           <div className={styles.group_button}>
-        <ButtonElement type={TYPE_BTN_REPORT_GO} />
-        <ButtonElement type={TYPE_BTN_REPORT_MAKE} />
-      </div>
+            <ButtonElement type={TYPE_BTN_REPORT_GO} />
+            <ButtonElement type={TYPE_BTN_REPORT_MAKE} />
+          </div>
         </div>
         <Footer />
       </div>

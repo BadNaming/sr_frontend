@@ -6,7 +6,7 @@ import {
 } from '../../utils/constants'
 import IconInfo from '../icon-info/icon-info'
 
-const TableReportMain = () => {
+const TableReportMain = (props) => {
   return (
     <>
       <table className={styles.table}>
@@ -18,34 +18,30 @@ const TableReportMain = () => {
                   <div className={styles.container_column_head}>
                     <p>{item.textRU}</p>
                     {item.text_info && (
-                    <IconInfo
-                      type={TYPE_ICON_FILLED_HELP}
-                      text={item.text_info}
-                    />
-                  )}
+                      <IconInfo
+                        type={TYPE_ICON_FILLED_HELP}
+                        text={item.text_info}
+                      />
+                    )}
                   </div>
                 </th>
               ))}
           </tr>
         </thead>
         <tbody className={styles.table_body}>
-          {TABLE_REPORT_MAIN_ROWS &&
-            TABLE_REPORT_MAIN_ROWS.map((item, index) => (
-              <tr key={item.id} className={styles.container_column}>
-                <td className={styles.table_column}>{item.name}</td>
-                <td className={styles.table_column}>{item.showing}</td>
-                <td className={styles.table_column}>{item.cpm}</td>
+          {props.data &&
+            props.data.map((item, index) => (
+              <tr key={item.ad_plan_name} className={styles.container_column}>
+                <td className={styles.table_column}>{item.ad_plan_name}</td>
+                <td className={styles.table_column}>{item.spent.toFixed(2)}</td>
+                <td className={styles.table_column}>{item.shows}</td>
+                <td className={styles.table_column}>{(item.spent / item.shows * 1000).toFixed(2)}</td>
                 <td className={styles.table_column}>{item.clicks}</td>
                 <td className={styles.table_column}>
-                  {item.ctr}
+                  {item.shows ? (item.clicks / item.shows * 100).toFixed(2) : 0}
                   {'%'}
                 </td>
-                <td className={styles.table_column}>{item.cpc}</td>
-                <td className={styles.table_column}>
-                  {item.cr}
-                  {'%'}
-                </td>
-                <td className={styles.table_column}>{item.cpf}</td>
+                <td className={styles.table_column}>{item.clicks ? (item.spent / item.clicks).toFixed(2) : 0}</td>
               </tr>
             ))}
         </tbody>

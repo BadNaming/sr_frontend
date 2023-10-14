@@ -30,6 +30,7 @@ export default function CheckMarks(props) {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     )
+    props.setListItems(value)
   }
 
   return (
@@ -46,7 +47,7 @@ export default function CheckMarks(props) {
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {props.listItems.map((name) => (
+          {props.listItems.length > 0 && props.listItems.map((name) => (
             <MenuItem key={name} value={name}>
               <Checkbox checked={personName.indexOf(name) > -1} />
               <ListItemText primary={name} />

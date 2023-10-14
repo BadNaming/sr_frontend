@@ -15,14 +15,18 @@ import {
 
 import { useDispatch } from 'react-redux'
 import { addUser } from '../../store/auth/authSlice'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const dispatch = useDispatch()
-  const [createUser, { isLoading, isError, isSuccess }] =
+  const navigate = useNavigate()
+  const [createUser, { isLoading, isError, isSuccess, error: userErrors, data: userData }] =
     useRegisterUserMutation()
-  const [getToken, { isLoading: isLoadingToken, isError: isErrorToken, isSuccess: isSuccessToken }] =
+  const [getToken, { isLoading: isLoadingToken, isError: isErrorToken, isSuccess: isSuccessToken, data: tokenData }] =
     useGetTokenMutation()
-
+  const [validationErrors, setValidationErrors] = useState([])
+  const [submittionErrors, setSubmittionErrors] = useState([])
 
   const passwordValidation = {
     password: (values) => {
@@ -46,23 +50,54 @@ const Register = () => {
     passwordValidation
   )
 
+  useEffect(() => {
+    if (userData && "email" in userData) {
+      getToken({ email: userData.email, password: values.password })
+    }
+  }, [getToken, userData, values.password]
+  )
+
+  useEffect(() => {
+    if (isSuccessToken && tokenData) {
+      console.log(tokenData)
+      localStorage.setItem(`${APP_NAME}Token`, tokenData.auth_token)
+      dispatch(addUser({ ...userData, token: tokenData.auth_token }))
+      navigate('/cabinet')
+    }
+  }, [isSuccessToken, tokenData, dispatch, userData]
+  )
+
+  useEffect(() => {
+    const totalErrors = []
+    Object.keys(errors).map((error) => {
+      totalErrors.push(errors[error])
+    })
+    setValidationErrors(totalErrors)
+  }, [errors])
+
+  useEffect(() => {
+    if (isError && 'data' in userErrors) {
+      const errors = []
+      Object.keys(userErrors.data).map((error) => {
+        userErrors.data[error].map((err) => {
+          errors.push(err)
+        }
+        )
+      })
+      setSubmittionErrors(errors)
+    }
+  }, [isError, userErrors])
 
   const handleRegister = async (e) => {
     e.preventDefault()
     if (isValid) {
-      const user = await createUser(values)
-      const token = await getToken({ email: user.data.email, password: values.password })
-      if ('auth_token' in token.data) {
-        localStorage.setItem(`${APP_NAME}Token`, token.data.auth_token)
-        dispatch(addUser({ ...user.data, token: token.data.auth_token }))
-      }
+      await createUser(values)
     }
   }
 
   return (
     <>
       <form onClick={handleRegister}>
-        {errors && <span>{errors.password}</span>}
         <fieldset>
           <InputElement name={TYPE_INPUT_NAME} value={values.first_name} onChange={handleChange} />
         </fieldset>
@@ -81,6 +116,14 @@ const Register = () => {
         <fieldset>
           <InputElement inputType='password' name={TYPE_INPUT_PASSWORD_SECOND} value={values.password_second} onChange={handleChange} />
         </fieldset>
+        {validationErrors.length > 0 && validationErrors.map((error, index) => {
+          return <p style={{ margin: "4px" }} key={index}>{error}</p>
+        }
+        )}
+        {submittionErrors.length > 0 && submittionErrors.map((error, index) => {
+          return <p style={{ margin: "4px" }} key={index}>{error}</p>
+        }
+        )}
         <ButtonElement disabled={!isValid} type={TYPE_BTN_REGISTER} />
       </form>
     </>
